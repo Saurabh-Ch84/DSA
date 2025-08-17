@@ -4,6 +4,7 @@ using namespace std;
 
 class Solution {
 public:
+    //optimal but overkill
     string largestGoodInteger1(string num) {
         int n=num.length();
         int left=0,right=0;
@@ -26,6 +27,7 @@ public:
         }
         return maxGoodInt;
     }
+    //optimal
     string largestGoodInteger2(string num) {
         string maxGoodInt="";
         int n=num.length();
