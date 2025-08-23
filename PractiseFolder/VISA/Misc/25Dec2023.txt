@@ -1,0 +1,206 @@
+This set of topics was part of the **second technical interview round** during the VISA Inc. on-campus recruitment process, as described on the [GeeksforGeeks interview experience page](https://www.geeksforgeeks.org/interview-experiences/visa-interview-experience-for-fte-on-campus/). The round focused on **core programming, data structures, OS fundamentals, and networking**, with a mix of **conceptual questions and coding challenges**. Here's a brief explanation of each item based on the surrounding context:
+
+---
+
+### 🧑‍💻 Programming & Data Structures
+
+- **C Code for Call by Value and Call by Reference**  
+  - *Call by Value*: Passes a copy of the variable; changes don’t affect the original.  
+  - *Call by Reference*: Passes the address; changes reflect in the original variable.  
+  - The interviewer likely asked for simple C code to demonstrate both.
+
+- **Array vs Linked List Usage**  
+  - *Array*: Fixed size, fast access via index, better for static data.  
+  - *Linked List*: Dynamic size, efficient insert/delete, better for unpredictable data growth.  
+  - You were probably asked to compare use cases and performance trade-offs.
+
+- **Real-Time Scenarios for Using Arrays and Linked Lists**  
+  - *Array*: Storing leaderboard scores, image pixels.  
+  - *Linked List*: Browser history, undo operations in editors.
+
+- **Optimized Array Value Addition**  
+  - Likely a coding task to add values efficiently (e.g., prefix sum, in-place updates).  
+  - Focus on minimizing time and space complexity.
+
+- **Balanced Parenthesis Check**  
+  - Classic stack-based problem to validate expressions like `({[]})`.  
+  - You may have been asked to implement or explain the logic.
+
+- **Counting Even Digits Using Bitwise Operators**  
+  - A twist on digit analysis using bitwise tricks (e.g., checking `digit & 1 == 0`).  
+  - Tests your ability to optimize low-level operations.
+
+---
+
+### 🗃️ Database & SQL
+
+- **SQL Queries for Joins and Second-Largest Salary Retrieval**  
+  - *Joins*: Combine data from multiple tables (INNER, LEFT, RIGHT).  
+  - *Second-Largest Salary*:  
+    ```sql
+    SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);
+
+    SELECT salary 
+    FROM employees 
+    GROUP BY salary 
+    ORDER BY salary DESC
+    LIMIT 1 OFFSET 1;
+    ```  
+  - These questions test your query-writing skills and understanding of relational logic.
+
+---
+
+### 🖥️ OS & Networking
+
+- **Process vs Program vs Thread**  
+  - *Program*: Passive code.  
+  - *Process*: Active execution of a program.  
+  - *Thread*: Lightweight unit within a process, shares memory.  
+  - You were likely asked to differentiate with examples.
+
+- **LAN and Socket Connections**  
+  - *LAN*: Local network for fast communication.  
+  - *Sockets*: Endpoints for sending/receiving data over networks.  
+  - You may have been asked to explain how socket programming enables communication in LAN setups.
+
+---
+
+### 🧑‍💻 Self-Introduction & Project Discussion
+- **Structure**: Name → Background → Tech stack → Key projects → Strengths → Career goals.
+- **Project Tips**:
+  - Highlight **problem statement**, **tech used**, **architecture**, and **impact**.
+  - Be ready to dive into **design decisions**, **trade-offs**, and **optimizations**.
+  - Use STAR format (Situation, Task, Action, Result) for clarity.
+
+---
+
+### 🔁 Removal of Duplicate Words from a Sentence
+- **Python Example**:
+  ```python
+  def remove_duplicates(sentence):
+      seen = set()
+      result = []
+      for word in sentence.split():
+          if word.lower() not in seen:
+              seen.add(word.lower())
+              result.append(word)
+      return ' '.join(result)
+  ```
+- **Regex-based approach** also exists for advanced filtering.
+
+---
+
+### 🌳 BST Manipulation for Target Sum
+- **Two-pointer via Inorder Traversal**:
+  - Traverse BST → Get sorted array → Apply two-pointer to find sum.
+- **Recursive Search**:
+  - For each node, search for (target - node.val) in BST.
+
+---
+
+### 🐍 Python Exception Handling (Scenario-Based)
+- **Use Cases**:
+  - File not found → `FileNotFoundError`
+  - Invalid input → `ValueError`
+  - Division by zero → `ZeroDivisionError`
+- **Best Practice**:
+  ```python
+  try:
+      x = int(input("Enter number: "))
+      print(10 / x)
+  except ValueError:
+      print("Invalid input")
+  except ZeroDivisionError:
+      print("Cannot divide by zero")
+  finally:
+      print("Execution complete")
+  ```
+
+---
+
+### ⚖️ Java vs Python Exceptions
+| Feature                  | Java                            | Python                          |
+|--------------------------|----------------------------------|----------------------------------|
+| Typing                   | Static                          | Dynamic                          |
+| Checked Exceptions       | Yes                             | No                               |
+| Syntax                   | Verbose                         | Concise                          |
+| Exception Hierarchy      | Strict                          | Flexible                         |
+| Custom Exceptions        | Class-based                     | Class-based                      |
+| `finally` block          | Supported                       | Supported                        |
+- Java enforces compile-time checks; Python favors runtime flexibility.
+
+---
+
+### 🧬 Polymorphism & Abstraction (Real-Time Examples)
+- **Polymorphism**:
+  - Payment gateway: `pay()` method behaves differently for `CreditCard`, `UPI`, `Wallet`.
+- **Abstraction**:
+  - ATM: User interacts with UI, unaware of backend logic.
+
+---
+
+### 💎 Diamond Problem in Inheritance
+- **C++**: Resolved using `virtual` inheritance.
+- **Java**: Avoided by disallowing multiple class inheritance; interfaces with default methods can cause 
+ambiguity, resolved by overriding.
+
+---
+
+### 🐍 vs ☕ Java vs Python (In-Depth)
+| Aspect         | Java                          | Python                        |
+|----------------|-------------------------------|-------------------------------|
+| Typing         | Static                        | Dynamic                       |
+| Speed          | Faster                        | Slower                        |
+| Syntax         | Verbose                       | Concise                       |
+| Use Cases      | Enterprise, Android           | ML, Web, Automation           |
+| Memory Mgmt    | GC                            | Reference Counting + GC       |
+- Python is agile and beginner-friendly; Java is robust and enterprise-grade.
+
+---
+
+### 🔧 Tomcat & Apache Internals
+- **Tomcat**: Servlet container; handles HTTP requests via connectors like Coyote.
+- **Apache HTTP Server**: Can forward requests to Tomcat via AJP protocol.
+- **Relationship**: Apache handles static content; Tomcat handles dynamic (Servlet/JSP).
+
+---
+
+### 🌐 Servlet Flow Understanding
+- Lifecycle: `init()` → `service()` → `doGet()`/`doPost()` → `destroy()`
+- Servlet container (like Tomcat) manages lifecycle and maps URLs to servlets.
+
+---
+
+### 🌿 Git Branching & Pointer Updates
+- **Create Branch**: `git branch feature-x`
+- **Switch & Create**: `git checkout -b feature-x`
+- **Move Pointer**: `git branch -f master <commit>` (without checkout)
+
+---
+
+### 🔄 SDLC Life Cycle
+1. **Requirement Analysis**
+2. **System Design**
+3. **Implementation**
+4. **Testing**
+5. **Deployment**
+6. **Maintenance**
+- Models: Waterfall, Agile, Spiral, V-Model
+
+---
+
+### 🗃️ Database Schema in DBMS
+- **Types**:
+  - Physical: Storage-level details
+  - Logical: Tables, relationships, constraints
+  - View: User-level abstraction
+- **Design Tip**: Normalize for consistency, denormalize for performance
+
+---
+
+### 🧠 Bootstrap Concepts in OS
+- **Bootstrap Program**: First code executed on startup; loads OS kernel.
+- **Stored in ROM**: Immutable, virus-resistant.
+- **Stages**: POST → Bootloader → Kernel → Init system
+
+---

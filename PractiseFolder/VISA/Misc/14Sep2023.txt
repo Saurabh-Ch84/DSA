@@ -1,0 +1,48 @@
+These questions were asked during the **technical + HR round** of the **Visa Inc. summer internship interview**, as 
+described on the GeeksforGeeks interview experience page. The interviewer had already reviewed the candidate’s resume 
+and was probing their understanding of **database fundamentals**, especially in the context of their project work.
+
+Here’s how each question fits into the surrounding context:
+
+---
+
+### 🗃️ **What is the difference between RDBMS and NoSQL databases?**
+This question was aimed at testing the candidate’s grasp of **data modeling paradigms**:
+
+- **RDBMS (Relational Database Management System)**:
+  - Structured schema with tables, rows, and columns.
+  - Uses SQL for querying.
+  - Enforces ACID properties for consistency.
+  - Examples: MySQL, PostgreSQL, Oracle.
+
+- **NoSQL**:
+  - Schema-less or flexible schema.
+  - Designed for scalability and high availability.
+  - Supports key-value, document, column-family, or graph models.
+  - Examples: MongoDB, Cassandra, Redis.
+
+The interviewer likely wanted to see if the candidate could articulate **when and why** each model is used—e.g., 
+RDBMS for transactional systems, NoSQL for large-scale distributed apps.
+
+---
+
+### ✅ **Is there any benefit to using a SQL database?**
+This follow-up question tested the candidate’s ability to **justify design choices**. Benefits of SQL databases include:
+
+- Strong consistency and integrity via ACID compliance.
+- Mature tooling and widespread community support.
+- Powerful querying capabilities with joins and aggregations.
+- Easier to enforce relationships and constraints.
+
+The interviewer was likely probing whether the candidate had considered these advantages in their own project decisions.
+
+---
+
+### 🔗 **About Foreign Keys**
+This question zoomed in on **relational integrity**:
+
+- A **foreign key** is a constraint that links one table to another, ensuring that the referenced value exists.
+- It enforces **referential integrity**, preventing orphan records.
+- Example: In an `Orders` table, `customer_id` might be a foreign key referencing `Customers(id)`.
+
+---

@@ -1,0 +1,189 @@
+---
+
+## 🔍 Round-2 Key Topics
+
+### 2. **Interpreted vs Compiled Languages**
+- **Interpreted Language**: Executes code line-by-line via an interpreter (e.g., Python, JavaScript).
+- **Compiled Language**: Translates entire code to machine language before execution (e.g., C++, Go).
+  
+| Feature              | Interpreted                     | Compiled                        |
+|---------------------|----------------------------------|----------------------------------|
+| Execution Speed     | Slower                          | Faster                          |
+| Portability         | High (platform-independent)     | Platform-dependent              |
+| Error Detection     | Runtime                         | Compile-time                    |
+| Examples            | Python, Ruby, JavaScript        | C, C++, Rust                    |
+
+---
+
+### 3. **TRIE for Prefix Search**
+- **Insertion Pseudocode**:
+```pseudo
+function insert(word):
+    node = root
+    for char in word:
+        if char not in node.children:
+            node.children[char] = new TrieNode()
+        node = node.children[char]
+    node.isEnd = true
+```
+
+- **Example**: Insert "cat", "car", "cart"
+- **Prefix Retrieval Code**:
+```cpp
+struct TrieNode {
+    bool isEnd;
+    unordered_map<char, TrieNode*> children;
+    TrieNode() : isEnd(false) {}
+};
+
+class Trie {
+    TrieNode* root;
+public:
+    Trie() { root = new TrieNode(); }
+
+    void insert(string word) {
+        TrieNode* node = root;
+        for(char ch : word) {
+            if(!node->children[ch])
+                node->children[ch] = new TrieNode();
+            node = node->children[ch];
+        }
+        node->isEnd = true;
+    }
+
+    void dfs(TrieNode* node, string prefix, vector<string>& result) {
+        if(node->isEnd) result.push_back(prefix);
+        for(auto& [ch, child] : node->children)
+            dfs(child, prefix + ch, result);
+    }
+
+    vector<string> getWordsWithPrefix(string prefix) {
+        TrieNode* node = root;
+        for(char ch : prefix) {
+            if(!node->children[ch]) return {};
+            node = node->children[ch];
+        }
+        vector<string> result;
+        dfs(node, prefix, result);
+        return result;
+    }
+};
+```
+
+---
+
+### 4. **Nearest Smaller Element**
+Use a **monotonic stack**:
+```cpp
+vector<int> nearestSmaller(vector<int>& arr) {
+    vector<int> result;
+    stack<int> st;
+    for(int val : arr) {
+        while(!st.empty() && st.top() >= val)
+            st.pop();
+        result.push_back(st.empty() ? -1 : st.top());
+        st.push(val);
+    }
+    return result;
+}
+```
+
+---
+
+## 🧠 Round-3 Deep Dive
+
+### 1. **DOS vs DDOS**
+- **DOS**: Single source overloads server.
+- **DDOS**: Multiple sources (botnet) flood server.
+- **DNS**: Resolves domain names to IPs.
+- **DHCP**: Dynamically assigns IPs to devices.
+
+### 2. **Preventing DOS Attacks**
+- Rate limiting
+- CAPTCHA
+- Firewalls
+- Load balancing
+- IP blacklisting
+
+### 3. **Load Balancer**
+- **Role**: Distributes traffic across servers.
+- **Algorithms**:
+  - Round Robin
+  - Least Connections
+  - IP Hash
+- **Failure Handling**: Health checks, auto-scaling, failover routing
+
+### 4. **Profiler**
+- Tracks CPU, memory usage, bottlenecks.
+- Without it: debugging is blind, performance tuning is guesswork.
+
+---
+
+## 🧪 System & Networking
+
+### 5. **Linux IP Commands**
+- Routing path: `traceroute <domain>`
+- Local IP: `ip addr show`
+- Release IP: `dhclient -r`
+- Renew IP: `dhclient`
+
+### 6. **Process vs Thread**
+| Feature     | Process                         | Thread                          |
+|-------------|----------------------------------|----------------------------------|
+| Memory      | Separate                        | Shared                          |
+| Overhead    | High                            | Low                             |
+| Communication | IPC needed                   | Direct via shared memory        |
+
+- **States**: New, Ready, Running, Waiting, Terminated
+- **Schedulers**: Long-term, Short-term, Medium-term
+
+### 7. **Scheduling Algorithms**
+| Algorithm       | Pros                        | Cons                        | Use Case                     |
+|-----------------|-----------------------------|-----------------------------|------------------------------|
+| FCFS            | Simple                      | Poor for short jobs         | Batch systems                |
+| SJF             | Optimal avg time            | Starvation possible         | Predictable environments     |
+| RR              | Fair                        | High context switch         | Time-sharing systems         |
+| Priority        | Flexible                    | Starvation of low priority  | Real-time systems            |
+
+### 8. **OS Scheduling Differences**
+- **Windows**: Hybrid priority-based
+- **Linux**: CFS (Completely Fair Scheduler)
+- **macOS**: Mach kernel + BSD scheduler
+
+---
+
+## 🧠 Memory & DBMS
+
+### 9. **Virtual Memory**
+- Uses disk as extension of RAM.
+- Enables multitasking, memory isolation.
+- Mechanism: Paging, segmentation
+
+### 10. **Indexing**
+- **Advantage**: Faster queries
+- **Types**:
+  - Primary Index
+  - Secondary Index
+  - Clustered/Non-clustered
+  - B-tree, Hash Index
+
+---
+
+## 🧰 Data Structures & Protocols
+
+### 11. **Applications**
+- **Stack**: Undo, syntax parsing
+- **Queue**: Scheduling, buffering
+- **LinkedList**: Dynamic memory
+- **Tree**: Hierarchies, DB indexing
+- **Heap**: Priority queues, scheduling
+
+### 12. **MQTT vs HTTP**
+| Feature       | MQTT                          | HTTP                          |
+|---------------|-------------------------------|-------------------------------|
+| Protocol      | Publish/Subscribe             | Request/Response              |
+| Overhead      | Low                           | High                          |
+| Use Case      | IoT, real-time updates        | Web browsing, APIs            |
+| Reliability   | QoS levels                    | TCP-based                     |
+
+---

@@ -1,0 +1,81 @@
+Absolutely, Saurabh! Here's a concise breakdown of each technical concept from the VISA Inc. interview experience:
+
+---
+
+### 🏗️ System Design
+
+- **Horizontal vs Vertical Scaling**  
+  - *Horizontal*: Add more machines (scale out).  
+  - *Vertical*: Upgrade existing machine’s resources (scale up).
+
+- **IRCTC Ticket Booking Synchronization**  
+  - Use a **centralized database** or **distributed locking** (e.g., Redis, Zookeeper) to prevent double booking.  
+  - Ensure atomic transactions and consistency across locations.
+
+---
+
+### 🖥️ Operating Systems
+
+- **Process vs Thread**  
+  - *Process*: Independent unit with separate memory.  
+  - *Thread*: Lightweight unit within a process, shares memory.
+
+- **Semaphores (with Example)**  
+  - Used for synchronization.  
+  - *Example*: A binary semaphore controlling access to a single printer—only one thread can print at a time.
+
+---
+
+### 🌐 Security
+
+- **DDoS Attack**  
+  - *Distributed Denial of Service*: Multiple systems flood a target server with traffic, causing service disruption.
+
+---
+
+### 📘 Theory Concepts
+
+#### **1. What is Testing and Types of Testing**
+- **Testing**: Process of evaluating a system to identify defects and ensure it meets requirements.
+- **Types**:
+  - *Unit Testing*: Tests individual components.
+  - *Integration Testing*: Tests interaction between modules.
+  - *System Testing*: Tests the complete system.
+  - *Acceptance Testing*: Validates against business requirements.
+  - *Regression Testing*: Ensures new changes don’t break existing functionality.
+
+#### **2. Stages of SDLC (Software Development Life Cycle)**
+1. **Requirement Analysis**
+2. **System Design**
+3. **Implementation (Coding)**
+4. **Testing**
+5. **Deployment**
+6. **Maintenance**
+
+Each stage ensures structured development and delivery of software.
+
+#### **3. Semaphores**
+- A **semaphore** is a synchronization primitive used to control access to shared resources.
+- **Example**: A counting semaphore with value 3 allows up to 3 threads to access a resource simultaneously.
+ When a thread finishes, it signals (increments) the semaphore.
+
+---
+
+### 🧠 Puzzles
+
+#### **1. 3 Equilateral Triangles with 6 Matchsticks**
+- **Solution**: Form a **triangular pyramid (tetrahedron)**.
+  - Use 3 matchsticks to form a base triangle.
+  - Use the remaining 3 to connect each vertex of the base to a single top point.
+  - This creates 3 equilateral triangles on the sides.
+
+#### **2. Hourglass Puzzle**
+- **Goal**: Measure exactly 9 minutes using a 4-minute and 7-minute hourglass.
+- **Steps**:
+  1. Start both hourglasses.
+  2. At 4 mins: Flip the 4-min hourglass.
+  3. At 7 mins: Flip the 7-min hourglass.
+  4. At 8 mins: Flip the 4-min again.
+  5. At 9 mins: The 7-min hourglass finishes—**exactly 9 minutes measured**.
+
+---

@@ -1,0 +1,64 @@
+---
+
+### 🗃️ **Types of Databases & Examples**
+- **Relational Databases**: Store data in tables with predefined schemas.  
+  - *Examples*: MySQL, PostgreSQL  
+- **NoSQL Databases**: Handle unstructured or semi-structured data, often schema-less.  
+  - *Examples*: MongoDB, Cassandra
+
+---
+
+### ✅ **ACID Properties**
+These ensure reliable transactions in databases:
+- **Atomicity**: All operations in a transaction succeed or none do.
+- **Consistency**: Database remains in a valid state before and after the transaction.
+- **Isolation**: Concurrent transactions don’t interfere with each other.
+- **Durability**: Once committed, changes persist even after system failure.
+
+---
+
+### 🧮 **Normalization Types & Examples**
+Normalization reduces redundancy and improves data integrity:
+- **1NF (First Normal Form)**: Eliminate repeating groups.  
+  - *Example*: Split multiple phone numbers into separate rows.
+- **2NF**: Remove partial dependencies (non-key attributes depend on full primary key).
+- **3NF**: Remove transitive dependencies (non-key attributes depend only on the key).
+- **BCNF**: Stronger version of 3NF, every determinant is a candidate key.
+
+---
+
+### 🌐 **OSI Model Layers & Functions**
+The OSI model has 7 layers:
+1. **Physical** – Transmits raw bits over a medium.
+2. **Data Link** – Handles error detection and framing.
+3. **Network** – Routes packets (IP).
+4. **Transport** – Ensures reliable delivery (TCP).
+5. **Session** – Manages sessions between applications.
+6. **Presentation** – Translates data formats (encryption, compression).
+7. **Application** – Interfaces with end-user applications (HTTP, FTP).
+
+---
+
+### ☁️ **Cloud Computing: Pros & Cons**
+- **Advantages**:
+  - Scalability
+  - Cost-efficiency
+  - Accessibility
+- **Disadvantages**:
+  - Security concerns
+  - Downtime risks
+  - Vendor lock-in
+
+---
+
+### 🐍☕ **Java vs Python**
+- **Java**:
+  - Statically typed
+  - Faster performance
+  - Verbose syntax
+- **Python**:
+  - Dynamically typed
+  - Slower but more readable
+  - Great for scripting and rapid development
+
+---

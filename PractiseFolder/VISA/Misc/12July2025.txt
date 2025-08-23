@@ -1,0 +1,80 @@
+That sounds like a rich and well-rounded interview experience—he really tested both your conceptual clarity and your ability to explain things intuitively. Let’s break down the key areas he touched on and how you might reflect or refine your responses for future interviews:
+
+---
+
+### 🧠 CS vs IT: Clarifying the Branches
+- **Computer Science (CS)** focuses on theoretical foundations—algorithms, computation theory, data structures, and software design.
+- **Information Technology (IT)** emphasizes practical implementation—networking, system administration, databases, and enterprise systems.
+- A good analogy: *CS builds the engine, IT ensures the car runs smoothly on the road.*
+
+---
+
+### ⚖️ Coin Puzzle: Minimum Weighings
+This is a classic divide-and-conquer logic puzzle.
+
+- **Approach**:
+  - Divide the 8 coins into 3 groups: 3, 3, and 2.
+  - First weighing: Compare the two groups of 3.
+    - If equal → fake is in the group of 2 → weigh one against the other.
+    - If unequal → fake is in the lighter group → weigh two coins from that group.
+      - If equal → third is fake.
+      - If unequal → lighter one is fake.
+- **Minimum weighings needed**: **2**
+
+Your discussion around “if-nots” and alternate splits shows great analytical depth. That’s exactly the kind of probing interviewers love.
+
+---
+
+### 🧸 Explaining Memory to a 5-Year-Old
+- “Memory is like your toy shelf. When you want to play, you take toys out and put them back when you're done. Computers do the same—they remember things while working and forget them when they’re done.”
+
+---
+
+### 🧮 Dynamic vs Static Memory in C++
+- **Static Memory**: Allocated at compile time (e.g., arrays).
+- **Dynamic Memory**: Allocated at runtime using `new` and `delete`.
+- Example:
+  ```cpp
+  int* arr = new int[10]; // dynamic
+  delete[] arr;           // cleanup
+  ```
+
+---
+
+### 🕳️ Dangling Pointers & Memory Leaks
+- **Dangling Pointer**: Points to memory that’s been freed.
+- **Memory Leak**: Memory allocated but never released.
+- **Avoidance**:
+  - Always `delete` what you `new`.
+  - Use **smart pointers**.
+
+---
+
+### 🧠 Smart Pointers
+- **Why use them**:
+  - Automatic memory management.
+  - Prevent leaks and dangling pointers.
+- Types:
+  - `std::unique_ptr`: sole ownership.
+  - `std::shared_ptr`: shared ownership.
+  - `std::weak_ptr`: non-owning reference.
+
+---
+
+### 🧱 OOP vs Procedural Programming
+- **Procedural**: Functions operate on data.
+- **OOP**: Data and behavior are bundled into objects.
+- **Benefits of OOP**:
+  - Encapsulation
+  - Inheritance
+  - Polymorphism
+  - Better modularity and reusability
+
+---
+
+### 🎲 Probability Question: Color Blindness
+- If asked “What’s the probability someone is color blind?”:
+  - Globally, ~8% of men and ~0.5% of women are color blind.
+  - You can discuss **conditional probability**, **population statistics**, or even **Bayesian reasoning** if pushed further.
+
+---

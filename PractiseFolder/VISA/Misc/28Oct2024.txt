@@ -1,0 +1,260 @@
+
+### 💻 2. Why Choose Computer Science?
+Computer Science is the backbone of innovation — it empowers you to solve real-world problems with logic, 
+creativity, and scalability. Whether it's building efficient algorithms, designing distributed systems, 
+or deploying resilient cloud apps, CS gives you the tools to shape the future.
+
+---
+
+### 🌐 3. Explain REST API
+**REST (Representational State Transfer)** is an architectural style for designing networked applications:
+- Uses HTTP methods: `GET`, `POST`, `PUT`, `DELETE`
+- Stateless: Each request contains all necessary info
+- Resource-based: URLs represent resources (`/users/123`)
+- Responses are typically in JSON
+- Aligns with CRUD operations
+
+Example:
+```http
+GET /users/123 → Fetch user data
+POST /users → Create new user
+```
+
+---
+
+### 🐳 4. What is Docker and its Need? What is a Docker Image?
+**Docker** is a containerization platform:
+- Packages code + dependencies into isolated containers
+- Ensures consistency across environments (dev, test, prod)
+- Lightweight, fast, and portable
+
+**Docker Image**:
+- A read-only template used to create containers
+- Built from a `Dockerfile` with layers (base OS, runtime, app code)
+
+---
+
+### ☁️ 5. Mention a Few AWS Services
+Here are key AWS services across categories:
+| Category        | Service            | Purpose                          |
+|----------------|--------------------|----------------------------------|
+| Compute         | EC2, Lambda        | VMs and serverless functions     |
+| Storage         | S3, EBS, EFS       | Object, block, and file storage |
+| Database        | RDS, DynamoDB      | Relational and NoSQL databases   |
+| Networking      | VPC, Route 53      | Private cloud and DNS            |
+| DevOps          | CodePipeline, CloudWatch | CI/CD and monitoring       |
+
+---
+
+### 🖼️ 6. How to Handle a Dataset with Corrupted Images
+- Use Python libraries like `PIL`, `cv2`, or `tensorflow` to validate images
+- Try opening each image in a loop:
+```python
+from PIL import Image
+for path in image_paths:
+    try:
+        img = Image.open(path)
+        img.verify()
+    except Exception:
+        print(f"Corrupted: {path}")
+```
+- Remove or replace corrupted files before training
+
+---
+
+### 🧹 7. Preprocessing Steps for Image and Text Datasets
+
+**Image Preprocessing**:
+- Resize and normalize pixels
+- Convert to grayscale or RGB
+- Remove noise (e.g., Gaussian blur)
+- Augment (flip, rotate, crop)
+
+**Text Preprocessing**:
+- Lowercase, remove punctuation
+- Tokenize into words/sentences
+- Remove stopwords
+- Apply stemming or lemmatization
+- Encode (e.g., one-hot, TF-IDF, embeddings)
+
+---
+
+### 🔤 8. Remove Characters from First String Not Present in Second
+Python example:
+```python
+def filter_chars(s1, s2):
+    return ''.join([c for c in s1 if c in set(s2)])
+```
+Input: `"computer"`, `"cat"` → Output: `"cmt"`
+
+---
+
+### 🔍 9. Check if Parentheses Are Valid Without Using Stack
+Use a counter:
+```python
+def is_valid(s):
+    count = 0
+    for c in s:
+        if c == '(':
+            count += 1
+        elif c == ')':
+            count -= 1
+        if count < 0:
+            return False
+    return count == 0
+```
+
+---
+
+### 🧠 10. Multiprocessing vs Multitasking vs Multiprogramming
+
+| Concept           | Description |
+|------------------|-------------|
+| Multiprogramming | Multiple programs in memory; CPU switches between them |
+| Multitasking      | OS executes multiple tasks by time-sharing |
+| Multiprocessing   | Multiple CPUs/cores executing processes in parallel |
+
+---
+
+### 🗂️ 11. Types of Schedulers in OS
+
+| Scheduler       | Role                          | Importance |
+|----------------|-------------------------------|------------|
+| Long-Term       | Loads jobs into memory         | Controls multiprogramming |
+| Short-Term      | Picks next process for CPU     | Most critical for performance |
+| Medium-Term     | Swaps processes in/out of memory | Optimizes memory usage |
+
+**Short-Term Scheduler** is most important for responsiveness.
+
+---
+
+### 🛠️ 12. Troubleshooting a Non-Responsive Server
+- ✅ Check network (ping, traceroute)
+- 🔌 Verify power and hardware (PSU, RAM, disk)
+- 📊 Monitor resource usage (CPU, memory, disk I/O)
+- 🔐 Check firewall, DNS, and logs
+- 🧼 Restart services or reboot if needed
+- 🛡️ Scan for malware or DDoS attacks
+
+---
+
+### 🧾 13. Ensuring Data Integrity in File System Design
+- Use **journaling** (e.g., ext4, NTFS) to log changes before committing
+- Apply **checksums** and **hashing** to detect corruption
+- Implement **access control** and **atomic operations**
+- Use **RAID**, **ECC memory**, and **SMART monitoring**
+- Enable **backups**, **snapshots**, and **versioning**
+
+---
+
+### 🧱 14. Explain a Design Pattern with Real-Life Example
+
+**Singleton Pattern**:
+- Ensures only one instance of a class exists
+
+🧠 Real-life analogy: Printer spooler — only one spooler should manage print jobs.
+
+Go to 28Oct2024.cpp
+Spooling is a classic example of buffering + queuing:
+It improves multitasking.
+It decouples fast producers (CPU) from slow consumers (printers, disk drives).
+It’s used in batch processing, file systems, and even input devices like keyboards.
+
+---
+
+### 🧬 15. What is Multiple Inheritance? Explain Diamond Problem
+
+**Multiple Inheritance**: A class inherits from more than one base class.
+
+**Diamond Problem**:
+- Class D inherits from B and C, both inherit from A
+- Ambiguity: Which version of A’s method does D use?
+
+🛠️ **Solution**: Use `virtual` inheritance (C++) or method resolution order (Python)
+
+---
+
+### 📡 16. Steps When a Client Sends Data to a Server
+
+1. 🧑‍💻 Client initiates request (e.g., via HTTP POST)
+2. 📡 Data sent over network (TCP/IP)
+3. 🛂 Server receives and parses request
+4. 🔐 Validates and authenticates data
+5. 🧮 Processes request (e.g., DB query, computation)
+6. 📤 Sends response back to client
+7. 🧾 Client receives and renders response
+
+---
+
+These questions come from **Round 3 (Technical + HR)** of the [VISA Software Engineer New Grad interview](https://www.geeksforgeeks.org/interview-experiences/visa-interview-experience-for-software-engineer-new-grad-on-campus-2024/) and are designed to assess both **technical depth** and **behavioral maturity**. Here's a breakdown of what each question is targeting, based on the surrounding page content:
+
+---
+
+### 🧑‍💼 **Introduce Yourself**
+- **Purpose:** Gauge communication skills and self-awareness.
+- **What VISA Looks For:** A concise summary of your background, interests in tech, and motivation for applying. Mention impactful projects or internships if relevant.
+
+---
+
+### 🔄 **How Did Previous Rounds Go?**
+- **Purpose:** Reflective thinking and honesty.
+- **What VISA Looks For:** Confidence, humility, and ability to self-assess. Mention what you learned or enjoyed, not just whether you “did well.”
+
+---
+
+### 🚀 **Describe the Most Impactful Project You've Worked On**
+- **Purpose:** Showcase initiative, problem-solving, and ownership.
+- **What VISA Looks For:** Projects with measurable outcomes, technical challenges, and collaboration. Bonus if it aligns with VISA’s domain (e.g., payments, security, scalability).
+
+---
+
+### 🏗️ **Monolithic vs Microservices Architecture**
+- **Purpose:** Test system design fundamentals.
+- **What VISA Looks For:**
+  - **Monolithic:** Single codebase, easier to develop initially, good for small teams or MVPs.
+  - **Microservices:** Modular, scalable, fault-tolerant, better for large-scale apps.
+  - **When to use Monolithic:** Early-stage projects, tight deadlines, or when simplicity is key.
+
+---
+
+### 🧠 **Explain the OS Booting Process**
+- **Purpose:** Assess CS core knowledge.
+- **What VISA Looks For:** Understanding of BIOS/UEFI, bootloader, kernel loading, and init systems. Bonus if you can relate it to Linux or Windows.
+
+---
+
+### 🔁 **Explain SDLC and STLC**
+- **Purpose:** Evaluate software process awareness.
+- **What VISA Looks For:**
+  - **SDLC (Software Development Life Cycle):** Planning → Analysis → Design → Implementation → Testing → Deployment → Maintenance.
+  - **STLC (Software Testing Life Cycle):** Requirement analysis → Test planning → Test case development → Environment setup → Test execution → Closure.
+
+---
+
+### ⏳ **Scenario: Deadline Tomorrow, But Focus Is on Maintaining Existing Code**
+- **Purpose:** Test prioritization and decision-making.
+- **What VISA Looks For:** Balance between delivery and stability. You might:
+  - Communicate with stakeholders.
+  - Patch critical bugs first.
+  - Document trade-offs.
+  - Propose a phased release.
+
+---
+
+### 🧪 **Handling a Project with Unfamiliar Technology**
+- **Purpose:** Assess adaptability.
+- **What VISA Looks For:** Willingness to learn, use of documentation, mentorship, and rapid prototyping. Mention how you break down unknowns into manageable chunks.
+
+---
+
+### 🎓➡️🏢 **Transitioning from College to Corporate Life**
+- **Purpose:** Understand mindset shift.
+- **What VISA Looks For:** Awareness of differences in pace, accountability, and collaboration. Highlight eagerness to learn and contribute meaningfully.
+
+---
+
+### 💼 **Why Do You Want to Join VISA?**
+- **Purpose:** Check alignment with company values.
+- **What VISA Looks For:** Passion for fintech, interest in secure scalable systems, and alignment with VISA’s mission to enable digital commerce globally.
+
+---

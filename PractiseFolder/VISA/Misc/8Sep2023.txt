@@ -1,0 +1,81 @@
+---
+
+### 🔐 What Is JWT?
+JWT is a **compact, URL-safe token format** used to securely transmit information between parties. 
+It’s most commonly used for **authentication and authorization** in web applications and APIs.
+
+---
+
+### 🧩 Structure of a JWT
+A JWT consists of **three parts**, separated by dots (`.`):
+
+```
+Header.Payload.Signature
+```
+
+#### 1. **Header**
+- Specifies metadata: the signing algorithm and token type.
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+Encoded using Base64Url.
+
+#### 2. **Payload**
+- Contains **claims**—statements about the user and token metadata.
+```json
+{
+  "sub": "1234567890",
+  "name": "Saurabh",
+  "iat": 1516239022,
+  "exp": 1516242622
+}
+```
+Common claims:
+- `sub`: Subject (user ID)
+- `iat`: Issued At
+- `exp`: Expiration
+- `iss`: Issuer
+- `aud`: Audience
+
+#### 3. **Signature**
+- Ensures integrity and authenticity.
+- Created by hashing the encoded header and payload with a secret key using the specified algorithm:
+```
+HMACSHA256(
+  base64UrlEncode(header) + "." + base64UrlEncode(payload),
+  secret
+)
+```
+
+---
+
+### 🔄 How JWT Works in Authentication
+Here’s the typical flow:
+
+1. **User Logs In**  
+   → Sends credentials to the server.
+
+2. **Server Verifies & Issues JWT**  
+   → If valid, server creates a JWT and sends it back.
+
+3. **Client Stores JWT**  
+   → Usually in `localStorage` or `cookies`.
+
+4. **Client Sends JWT in Requests**  
+   → Included in the `Authorization` header as a Bearer token.
+
+5. **Server Verifies JWT**  
+   → Checks signature and expiration. If valid, processes the request.
+
+---
+
+### ⚙️ Why JWT Is Powerful
+- **Stateless**: No need to store session data on the server.
+- **Tamper-proof**: Signature ensures data integrity.
+- **Scalable**: Ideal for distributed systems and microservices.
+- **Cross-domain**: Works well with Single Sign-On (SSO).
+
+---
