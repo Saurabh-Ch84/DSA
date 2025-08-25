@@ -155,3 +155,91 @@ Let’s imagine a hybrid algorithm called **“QuantaLock”**—designed for po
 This kind of algorithm would be ideal for **IoT ecosystems**, **secure mobile payments**, and **edge computing environments**.
 
 ---
+
+## 📘 Normalization & Normal Forms
+
+Normalization organizes data to reduce redundancy and improve integrity. Here are the key normal forms:
+
+| Normal Form | Description | Example |
+|-------------|-------------|---------|
+| **1NF**     | Atomic values; no repeating groups | `Student(Name, Phone1, Phone2)` → split into separate rows or columns |
+| **2NF**     | 1NF + no partial dependency (only applies to composite keys) | `Course(StudentID, CourseID, CourseName)` → move `CourseName` to separate table |
+| **3NF**     | 2NF + no transitive dependency | `Employee(ID, DeptID, DeptName)` → move `DeptName` to `Department` table |
+| **BCNF**    | Stronger version of 3NF; every determinant is a candidate key | Fix anomalies where non-key attributes determine other non-key attributes |
+
+---
+
+## 🧩 Scenario-Based Schema & E-R Diagram
+
+**Scenario**: Online Bookstore  
+Entities: `Customer`, `Order`, `Book`, `Payment`
+
+### Schema:
+- `Customer(CustomerID, Name, Email)`
+- `Book(BookID, Title, Author, Price)`
+- `Order(OrderID, CustomerID, Date)`
+- `OrderDetails(OrderID, BookID, Quantity)`
+- `Payment(PaymentID, OrderID, Amount, Method)`
+
+### E-R Diagram Highlights:
+- One-to-many: `Customer → Order`
+- Many-to-many: `Order ↔ Book` via `OrderDetails`
+- One-to-one: `Order → Payment`
+
+---
+
+## 🆚 MongoDB vs Traditional RDBMS
+
+| Feature | MongoDB (NoSQL) | RDBMS (SQL) |
+|--------|------------------|-------------|
+| Data Format | BSON (Binary JSON) | Tables with rows and columns |
+| Schema | Flexible | Fixed schema |
+| Scalability | Horizontal (sharding) | Vertical (scaling up) |
+| Joins | Limited support | Strong relational joins |
+| Use Case | Real-time apps, IoT, unstructured data | Banking, ERP, structured data |
+
+### 🧪 Basic Queries
+
+**SQL**:
+```sql
+SELECT * FROM Customers WHERE age > 30;
+```
+
+**MongoDB**:
+```js
+db.customers.find({ age: { $gt: 30 } });
+```
+
+---
+
+## 🧬 BSON in MongoDB
+
+- **BSON** = Binary JSON
+- Supports additional types like `Date`, `int`, `long`, `float`, `binary`
+- Optimized for speed and traversal in MongoDB
+
+---
+
+## 🌐 RESTful Services & GCM
+
+- **RESTful Services**: Stateless APIs using HTTP methods (`GET`, `POST`, `PUT`, `DELETE`)
+- **GCM (Google Cloud Messaging)**: Deprecated, replaced by **Firebase Cloud Messaging (FCM)**; used for push notifications in Android apps
+
+---
+
+## 🌲 Binary Tree Concepts
+
+| Tree Type | Definition |
+|-----------|------------|
+| **Complete Binary Tree** | All levels filled except possibly last, filled left to right |
+| **Full Binary Tree** | Every node has 0 or 2 children |
+
+### 🧮 Height of Full Binary Tree in O(1)
+
+If `n` is the number of nodes in a full binary tree:
+```cpp
+int height = log2(n + 1);
+```
+This works because a full binary tree with height `h` has exactly `2^h - 1` nodes.
+
+---

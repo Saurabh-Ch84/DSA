@@ -46,3 +46,27 @@ This question zoomed in on **relational integrity**:
 - Example: In an `Orders` table, `customer_id` might be a foreign key referencing `Customers(id)`.
 
 ---
+🖥️ Operating Systems (OS)
+Race Condition: When multiple threads access shared data and the outcome depends on the timing of their execution.
+
+Deadlock: A state where processes wait indefinitely for resources held by each other.
+
+Thread vs Process: Threads share memory space; processes are isolated. Understanding their lifecycle and scheduling is key.
+
+🗄️ Database Management Systems (DBMS)
+Delete vs Truncate vs Drop: Differences in how data or schema is removed.
+
+Where vs Having: Filtering rows before vs after aggregation.
+
+Joins: Combining rows from multiple tables based on related columns.
+
+Stored Procedure: Precompiled SQL code that can be reused and executed on the database server.
+
+🌐 Networking
+IPv4 vs IPv6: Addressing schemes; IPv6 offers a larger address space.
+
+Protocol: Rules governing data communication (e.g., HTTP, FTP).
+
+TCP/IP: Foundational suite for internet communication.
+
+NAT (Network Address Translation): Technique to map private IPs to public ones, often used in routers.

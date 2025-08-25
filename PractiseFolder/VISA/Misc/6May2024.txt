@@ -79,3 +79,73 @@ Each stage ensures structured development and delivery of software.
   5. At 9 mins: The 7-min hourglass finishes—**exactly 9 minutes measured**.
 
 ---
+
+Great question, Saurabh. Based on the surrounding page content—which details an on-campus interview experience at Visa Inc.—this question was asked during the **Technical Round II**, where the interviewer was probing the candidate’s understanding of **DBMS concepts**, especially in the context of real-world applications and project work.
+
+---
+
+### 🌟 What Is a Star Schema?
+
+A **star schema** is a type of database schema commonly used in **data warehousing and business intelligence**. It’s called a “star” because of its structure:
+
+- **Central Fact Table**: Contains measurable, quantitative data (e.g., sales, transactions).
+- **Surrounding Dimension Tables**: Contain descriptive attributes related to the facts (e.g., time, product, customer).
+
+The layout resembles a star, with the fact table at the center and dimension tables radiating outward.
+
+---
+
+### 🏢 Where Is It Used?
+
+In the context of the interview, this was likely asked to assess the candidate’s familiarity with **data modeling for analytics**, especially since their project involved **Android–DBMS** integration. Star schemas are typically used in:
+
+- **Data Warehouses**
+- **Business Intelligence Tools**
+- **Reporting Systems**
+- **OLAP (Online Analytical Processing)** environments
+
+---
+
+### ✅ Advantages of Star Schema
+
+The interviewer was likely looking for these key benefits:
+
+- **Simplified Queries**: Easy to understand and write SQL queries due to clear relationships.
+- **Improved Performance**: Optimized for read-heavy operations and aggregations.
+- **Scalability**: Handles large volumes of data efficiently.
+- **Intuitive Design**: Easier for analysts and non-technical users to navigate.
+
+In the context of the **Visa Interview Experience (Set 12)** shared on GeeksforGeeks, the question **“How ping works”** appeared during **Technical Round 2**, which focused on core computer science concepts like **Operating Systems (OS)** and **Networking**.
+
+---
+
+### 🌐 What the Interviewer Was Likely Testing
+
+Given the candidate had worked on a **networks project** and had exposure to **Android–DBMS integration**, this question was likely meant to assess:
+
+- **Basic understanding of network diagnostics**
+- **Familiarity with ICMP protocol**
+- **Ability to explain low-level system behavior**
+
+---
+
+### 🧠 How Ping Works — Explained Simply
+
+The `ping` command is a **network utility** used to test the **reachability** of a host (like a server or website) on an IP network. Here's how it works:
+
+1. **ICMP Echo Request**: Your system sends a small packet (called an ICMP Echo Request) to the target IP address.
+2. **ICMP Echo Reply**: If the target is reachable, it responds with an ICMP Echo Reply.
+3. **Round-Trip Time (RTT)**: Ping measures how long it takes for the request to go out and the reply to come back.
+4. **Packet Loss & TTL**: It also reports if any packets were lost and shows the Time-To-Live (TTL), which helps diagnose routing issues.
+
+---
+
+### 📌 Why This Matters in Interviews
+
+In system design or backend roles—especially at companies like Visa—understanding how `ping` works helps you:
+
+- Diagnose **network latency** or **connectivity issues**
+- Understand **underlying protocols** like ICMP and IP
+- Build more **resilient systems** that handle network failures gracefully
+
+---
