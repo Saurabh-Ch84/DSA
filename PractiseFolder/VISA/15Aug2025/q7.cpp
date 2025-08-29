@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    string smallestWindow(string &s1, string &s2) {
+    string smallestWindow1(string &s1, string &s2) {
         int n = s1.length(), m = s2.length();
         if (n == 0 || m == 0 || m > n) return "";
 
@@ -19,7 +19,7 @@ public:
         while (right < n) {
             char curr = s1[right];
             window[curr]++;
-            if (freq.count(curr) && window[curr] == freq[curr])
+            if(freq.count(curr) && window[curr] == freq[curr])
                 formed++;
 
             while (formed == required){
@@ -37,12 +37,41 @@ public:
         if (start == -1) return "";
         return s1.substr(start, minLen);
     }
+    
+    // More Optimal
+    string smallestWindow2(string &s1, string &s2) {
+        int n = s1.length(), m = s2.length();
+        if (n == 0 || m == 0 || m > n) return "";
+
+        unordered_map<char, int> freqMap;
+        for (char ch : s2) freqMap[ch]++;
+
+        int left=0,right=0,count=0;
+        int start=-1,minLen=INT_MAX;
+        
+        while(right<n){
+            char ch=s1[right];
+            if(freqMap[ch]>=1) count++;
+            freqMap[ch]--;
+            while(count==m){
+                if(right-left+1<minLen){
+                    minLen=right-left+1;
+                    start=left;
+                }
+                freqMap[s1[left]]++;
+                if(freqMap[s1[left]]>0) count--;
+                left++;
+            }
+            right++;
+        }
+        return (start==-1)? "":s1.substr(start,minLen);
+    }
 };
 
 int main(){
     Solution s;
     string str="timetopractice";
-    string tar="toc";
-    cout<<s.smallestWindow(str,tar)<<endl;
+    string target="toc";
+    cout<<s.smallestWindow2(str,target)<<endl;
 return 0;
 }

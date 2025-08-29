@@ -47,9 +47,8 @@ class Solution{
         while(true){
             int pivot_index=rand()%(right-left+1)+left;
             int new_pivot_index=partition(nums,left,right,pivot_index);
-            if(new_pivot_index==n-k){
+            if(new_pivot_index==n-k)
                 return nums[new_pivot_index];
-            }
             else if(new_pivot_index > n-k)
                 right=new_pivot_index-1;
             else left=new_pivot_index+1;

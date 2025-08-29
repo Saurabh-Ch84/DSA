@@ -45,7 +45,17 @@ class Solution {
     }
 };
 
-int main(){
+void print(vector<string> paths){
+    for(string &path:paths){
+        for(char ch:path)
+            cout<<ch<<" ";
+        cout<<endl;
+    }
+}
 
+int main(){
+    Solution s;
+    vector<vector<int>> maze={{1,0,0,1},{1,1,0,1},{1,1,1,1},{1,0,0,1}};
+    print(s.ratInMaze(maze));
 return 0;
 }

@@ -31,7 +31,7 @@ class Solution{
                     res += to_string(sum);
                 } 
                 else  res += curr;
-                i = j; // Move to next group
+                i = j;
             }
             s = res;
         }

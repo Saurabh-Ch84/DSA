@@ -24,12 +24,13 @@ class Solution{
     vector<vector<int>> BFS(vector<vector<int>> &grid,int sX,int sY,int n,int m){
         vector<vector<int>> res(n,vector<int>(m,-1));
         queue<pair<int,int>> q;
-        q.push({sX,sY});
         unordered_set<int> hashSet;
-        hashSet.insert(sX*m+sY);
         
+        q.push({sX,sY});
+        hashSet.insert(sX*m+sY);
         res[sX][sY]=0;
         vector<int> di={-1,0,1,0},dj={0,1,0,-1};
+        
         while(!q.empty()){
             int sz=q.size();
             for(int step=0;step<sz;step++)

@@ -5,6 +5,7 @@ using namespace std;
 class Solution
 {
 public:
+    //Better Approach
     vector<int> findMaxGuests2(int Entry[], int Exit[], int N)
     {
         // Your code goes here
@@ -32,6 +33,7 @@ public:
         return {(int)pq.size(), minTime};
     }
 
+    //Optimal Approach
     vector<int> findMaxGuests2(int Entry[], int Exit[], int N)
     {
         // Your code goes here
