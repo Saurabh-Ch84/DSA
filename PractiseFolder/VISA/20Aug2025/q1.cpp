@@ -3,7 +3,6 @@
 using namespace std;
 
 /*
-
 Problem Statement: Partition Set into Two Subsets with Frequency Constraints and Minimum Absolute Difference
 You are given an array arr[] of n integers. 
 Your task is to partition this array into two disjoint subsets S1 and S2 such that:
@@ -27,14 +26,12 @@ Output Format:
 
 Print a single integer representing the minimum absolute difference between the sums of subsets S1 and S2 
 that satisfy the conditions.
-
 */
 
 class Solution{
     bool recursion(vector<int> &nums,int target,int i){
         if(target==0) return true;
-        if(i==0) return false;
-        // cout<<"R";
+        if(i<0) return false;
         bool notTake=recursion(nums,target,i-1);
         bool take=false;
         if(nums[i]<=target) take=recursion(nums,target-nums[i],i-1);
@@ -43,9 +40,8 @@ class Solution{
 
     bool memoization(vector<int> &nums,int target,int i,vector<vector<int>> &dp){
         if(target==0) return true;
-        if(i==0) return false;
+        if(i<0) return false;
         if(dp[i][target]!=-1) return dp[i][target];
-        // cout<<"M";
         bool notTake=memoization(nums,target,i-1,dp);
         bool take=false;
         if(nums[i]<=target) take=memoization(nums,target-nums[i],i-1,dp);
@@ -54,9 +50,8 @@ class Solution{
 
     bool memoization2(vector<int> &nums,int target,int i,vector<vector<int>> &dp,vector<int> &setA){
         if(target==0) return true;
-        if(i==0) return false;
+        if(i<0) return false;
         if(dp[i][target]!=-1) return dp[i][target];
-        // cout<<"M";
         bool notTake=memoization2(nums,target,i-1,dp,setA);
         bool take=false;
         if(nums[i]<=target){
@@ -65,8 +60,9 @@ class Solution{
         }
         return dp[i][target]=take|notTake;
     }
+        
         public:
-    int getMinDiffBetweenSubsets(vector<int> &nums){
+    int getMinSumDiffBetSubs(vector<int> &nums){
         int sum=0,n=nums.size();
         for(int i=0;i<n;i++) sum+=nums[i];
         int halfSum=sum/2;
@@ -78,7 +74,7 @@ class Solution{
         }
         return -1;
     }
-    int getMinDiffBetweenSubsetsGroupingElements(vector<int> &nums){
+    int getMinSumDiffBetSubsGroupEle1(vector<int> &nums){
         int sum=0,n=nums.size(),actualSum=0;
         unordered_map<int,int> freqMap;
         vector<int> uniqueArr;
@@ -109,13 +105,28 @@ class Solution{
         }
         return -1;
     }
+
+    int getMinSumDiffBetSubsGroupEle2(vector<int> &nums){
+        unordered_map<int,int> freqMap;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            freqMap[nums[i]]++;
+        }
+        vector<int> nums_;
+        for(auto &p:freqMap){
+            int val=p.first,freq=p.second;
+            nums_.push_back(val*freq);
+        }
+        return getMinSumDiffBetSubs(nums_);
+    }  
 };
 
 int main(){
     Solution s;
     vector<int> arr1={9,8,3,1,5,3,3,7,3,7};
     vector<int> arr2={9,6,9,2,6};
-    cout<<s.getMinDiffBetweenSubsets(arr1)<<endl;
-    cout<<s.getMinDiffBetweenSubsetsGroupingElements(arr1)<<endl;
+    cout<<s.getMinSumDiffBetSubs(arr2)<<endl;
+    cout<<s.getMinSumDiffBetSubsGroupEle1(arr2)<<endl;
+    cout<<s.getMinSumDiffBetSubsGroupEle2(arr2)<<endl;
 return 0;
 }

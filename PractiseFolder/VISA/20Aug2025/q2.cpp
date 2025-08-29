@@ -12,6 +12,8 @@ class Animal{
     }
 
     virtual void eating()=0; //pure virtual function
+
+    virtual ~Animal() {}
 };
 
 class Herbivore:public Animal{
