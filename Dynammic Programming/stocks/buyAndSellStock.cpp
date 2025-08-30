@@ -131,6 +131,7 @@ public:
         //     after=curr;
         // }
         // return after[1][k];
+        
         vector<int> after(5,0);
         vector<int> curr(5,0);
         for(int i=m-1;i>-1;i--){

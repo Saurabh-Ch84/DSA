@@ -30,13 +30,11 @@ int minPathSum(vector<vector<int>> grids) {
 
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
-            if(i-1 >= 0 && j-1 >= 0)
+            if(i>1 && j>1)
                 grids[i][j] += min(grids[i-1][j], grids[i][j-1]);
             else{
-                if(i-1 >= 0)
-                    grids[i][j] += grids[i-1][j];
-                if(j-1 >= 0)
-                    grids[i][j] += grids[i][j-1];
+                if(i>1) grids[i][j] += grids[i-1][j];
+                if(j>1) grids[i][j] += grids[i][j-1];
             }
         }
     }

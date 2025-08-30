@@ -45,7 +45,7 @@ class Solution {
                 }
                 mid1++;
             }
-        left++;    
+            left++;    
         }
         return res;
     }

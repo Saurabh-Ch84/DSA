@@ -14,8 +14,7 @@ public:
         {
             sum += arr[i];
             maxSum = max(sum, maxSum);
-            if (sum < 0)
-                sum = 0;
+            if (sum < 0) sum = 0;
         }
         return maxSum;
     }

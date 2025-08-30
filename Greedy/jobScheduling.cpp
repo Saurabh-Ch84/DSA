@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution1 {
@@ -12,7 +13,9 @@ public:
             if(deadline[i] > maxDeadline) maxDeadline = deadline[i];
             v.push_back({profit[i], deadline[i]});
         }
-        sort(v.begin(), v.end(), greater<pair<int,int>>);
+        sort(v.begin(), v.end(), [](const pair<int,int>& a, const pair<int,int>& b) {
+            return a.first > b.first;
+        });
         vector<int> answer(maxDeadline + 1, -1);
         int job = 0, benefit = 0;
         for(int i = 0; i < v.size(); i++) {
@@ -36,7 +39,7 @@ class Solution2 {
             parent.resize(n + 1);
             for(int i = 0; i <= n; i++) parent[i] = i;
         }
-        int Find(int s) {
+        int Find(int s){
             if(s == parent[s]) return s;
             return parent[s] = Find(parent[s]);
         }

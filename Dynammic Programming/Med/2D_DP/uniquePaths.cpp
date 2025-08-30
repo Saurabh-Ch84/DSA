@@ -1,7 +1,7 @@
 #include<vector>
 using namespace std;
 
-class Solution {
+class Solution3 {
 public:
     int uniquePaths(int m, int n) {
         int N = m + n - 2;
@@ -14,7 +14,7 @@ public:
     }
 };
 
-class Solution {
+class Solution2 {
 public:
     int uniquePaths(int m, int n) {
         vector<vector<int>> dpMatrix(m,vector<int>(n,1));
@@ -28,7 +28,7 @@ public:
     }
 };
 
-class Solution {
+class Solution1 {
 public:
     int uniquePaths(int m, int n) {
         vector<int> dpArray(n,1);

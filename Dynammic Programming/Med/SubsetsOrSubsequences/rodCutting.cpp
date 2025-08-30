@@ -5,9 +5,7 @@ using namespace std;
 
 class Solution {
     int recursion(vector<int> &price, int idx, int rodTotalSize, vector<vector<int>> &dp) {
-        if (idx == 0) {
-            return price[0] * rodTotalSize;
-        }
+        if (idx == 0) return price[0] * rodTotalSize;
         if (dp[idx][rodTotalSize] != -1) return dp[idx][rodTotalSize];
         int notTake = recursion(price, idx - 1, rodTotalSize, dp);
         int take = -1e6;

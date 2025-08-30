@@ -18,7 +18,7 @@ class Solution
         if (!root->left && !root->right)
             return {0, root->val}; //first-- if you don't rob , second-- if you rob this node
         pair<int, int> p;
-        p = {0, 0};
+        p = {0, root->val};
         if (root->left)
         {
             pair<int, int> temp1 = DFS(root->left);
@@ -31,7 +31,6 @@ class Solution
             p.first += max(temp2.second, temp2.first);
             p.second += temp2.first;
         }
-        p.second += root->val;
         return p;
     }
 

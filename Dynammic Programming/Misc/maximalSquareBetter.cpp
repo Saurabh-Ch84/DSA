@@ -1,6 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution2
+{
+public:
+    int maximalSquare(vector<vector<int>>& matrix)
+    {
+        if (matrix.empty() || matrix[0].empty()) {
+            return 0;
+        }
+
+        int rows = matrix.size();
+        int cols = matrix[0].size();
+        
+        // The dp table stores the side length of the square ending at (i, j)
+        vector<vector<int>> dp(rows, vector<int>(cols, 0));
+        int max_side_length = 0;
+
+        // Fill the DP table
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 1) {
+                    if (i == 0 || j == 0) {
+                        // Base cases: squares in the first row or col can only be of size 1
+                        dp[i][j] = 1;
+                    } else {
+                        // The core recurrence relation
+                        dp[i][j] = 1 + min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]});
+                    }
+                    // Update the max side length found so far
+                    max_side_length = max(max_side_length, dp[i][j]);
+                }
+            }
+        }
+        
+        // Return the area
+        return max_side_length * max_side_length;
+    }
+};
+
+
+
 class Solution
 {
 public:

@@ -8,9 +8,9 @@ class Solution {
         if(idxS<0) return 0;
         if(dp[idxS][idxT]!=-1) return dp[idxS][idxT];
         int take=0,notTake=0;
-        if(s[idxS]==t[idxT]) take=recursion(s,t,idxS-1,idxT-1,dp);
         notTake=0+recursion(s,t,idxS-1,idxT,dp);
-        return dp[idxS][idxT]=take+notTake;
+        if(s[idxS]==t[idxT]) take=recursion(s,t,idxS-1,idxT-1,dp);
+        return dp[idxS][idxT]=take+notTake; 
     }
 public:
     int numDistinct(string s, string t){

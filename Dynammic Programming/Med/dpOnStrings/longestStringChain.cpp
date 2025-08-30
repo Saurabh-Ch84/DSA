@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 class Solution {
@@ -46,7 +47,7 @@ class Solution2 {
             }
         }
         vector<int> lds(n,1);
-       for (int i = n - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--){
             for (int next = n - 1; next > i; next--) {
                 if (nums[next] < nums[i] && lds[i] < 1 + lds[next])
                     lds[i] = 1 + lds[next];

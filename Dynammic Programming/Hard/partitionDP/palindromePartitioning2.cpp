@@ -13,7 +13,7 @@ class Solution {
         }
         return dp[st][end]=true;
     }
-    int recursion(string &s,int idx,int n,vector<int> &dp,vector<vector<int>> &dp2){
+    int memoization(string &s,int idx,int n,vector<int> &dp,vector<vector<int>> &dp2){
         if(idx>=n) return 0;
         if(dp[idx]!=-1) return dp[idx];
         int mini=1e9;
@@ -21,7 +21,7 @@ class Solution {
         {
             if(isPalindrome(s,idx,k,dp2))
             {
-                int ways=1+recursion(s,k+1,n,dp,dp2);
+                int ways=1+memoization(s,k+1,n,dp,dp2);
                 mini=min(mini,ways);
             }
         }
@@ -32,7 +32,7 @@ public:
         int n=s.length();
         vector<int> dp(n,-1);
         vector<vector<int>> dp2(n,vector<int>(n,-1));
-        return recursion(s,0,n,dp,dp2)-1;
+        return memoization(s,0,n,dp,dp2)-1;
     }
 };
 

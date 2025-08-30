@@ -4,7 +4,7 @@
 using namespace std;
 
 class Solution {
-    bool overlap(const vector<int> &curr,const vector<int> &prev){
+    bool isOverlap(const vector<int> &curr,const vector<int> &prev){
         return curr[0]<=prev[1];
     }
   public:
@@ -16,9 +16,9 @@ class Solution {
         int n=arr.size();
         int ptr=1;
         while(ptr<n){
-            vector<int> &curr=arr[ptr++];
             vector<int> &prev=res.back();
-            if(overlap(curr,prev))
+            vector<int> &curr=arr[ptr++];
+            if(isOverlap(curr,prev))
                 prev[1]=max(prev[1],curr[1]);
             else res.push_back(curr);
         }

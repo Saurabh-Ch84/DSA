@@ -7,7 +7,7 @@ class Solution {
     int memo(vector<int> &a, vector<vector<int>> &dp, int index, int target) {
         if (index == 0) {
             if (target == 0 && a[0] == 0) return 2; // pick or not pick zero
-            if (target == 0 || a[0]==target) return 1;
+            if (target == 0 || a[0] == target) return 1;
             return 0;
         }
         if (dp[index][target] != -1) return dp[index][target];

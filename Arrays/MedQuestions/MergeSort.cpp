@@ -14,8 +14,7 @@ class Solution{
 
     void merge(vector<int> &v,int low,int mid,int high){
         vector<int> temp;
-        int left=low;
-        int right=mid+1;
+        int left=low,right=mid+1;
         while(left<=mid && right<=high){
             if(v[left]<v[right]) temp.push_back(v[left++]);
             else temp.push_back(v[right++]);
