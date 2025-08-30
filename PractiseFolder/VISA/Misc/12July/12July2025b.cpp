@@ -3,11 +3,9 @@
 using namespace std;
 
 /*
-
 We were given string of n, where str[i] denotes the binary number . For example if str[i]="3415" then our 
 deduced binary number will be : 11101 (set bits on position 1, 3, 4 and 5 from end, positions not given can 
 be assumed to be zero). Problem was to sort these strings on increasing order of their binary numbers.
-
 */
 
 class Solution{
@@ -19,6 +17,7 @@ class Solution{
         }
         return val;
     }
+    
     static bool comp(const string &a,const string &b){
         return binaryVal(a)<binaryVal(b);
     }

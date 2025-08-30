@@ -35,7 +35,8 @@ int KMPsearch(string text, string pattern) {
 
     while (i < n) {
         if (text[i] == pattern[j]) {
-            i++; j++;
+            i++; 
+            j++;
             if (j == m) return i - m; // match found
         } else {
             if (j != 0) {

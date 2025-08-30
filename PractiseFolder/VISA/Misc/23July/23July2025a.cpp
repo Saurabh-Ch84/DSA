@@ -4,8 +4,8 @@ using namespace std;
 
 /*
 Q1.Sorting of the vector of pairs using compare function: Given different strings consists of two substrings 
-one consisting of a name and the other consisting of a Roman number from 1-50. You have to sort the strings first by their name and then 
-by the value represented by the Roman string. 
+one consisting of a name and the other consisting of a Roman number from 1-50. 
+You have to sort the strings first by their name and then by the value represented by the Roman string. 
 The implementation requires to design a function to convert a Roman string into a corresponding integer value.
 
 Q2.Given n, the number of lanes numbered from 1 to n. m cars are standing in lanes where the start and 
