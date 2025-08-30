@@ -1,0 +1,208 @@
+These questions were part of the technical interview round for the Associate Engineer role at PwC India, as described in the [GeeksforGeeks interview experience](https://www.geeksforgeeks.org/interview-experiences/pwc-interview-experience-for-associate-engineer-on-campus/). Let’s break each one down with clarity and precision:
+
+---
+
+### 🧨 Explain Deadlock
+
+A **deadlock** occurs in operating systems when two or more processes are stuck waiting for each other’s resources, and none can proceed. It’s like a circular traffic jam where every car waits for another to move.
+
+**Four necessary conditions for deadlock**:
+1. **Mutual Exclusion**: Only one process can use a resource at a time.
+2. **Hold and Wait**: A process holds one resource and waits for another.
+3. **No Preemption**: Resources can’t be forcibly taken away.
+4. **Circular Wait**: A closed chain of processes exists, each waiting for a resource held by the next.
+
+**Example**:  
+Process A holds Resource 1 and waits for Resource 2, while Process B holds Resource 2 and waits for Resource 1 — both are stuck.
+
+---
+
+### 🔄 Swap Two Numbers Without a Third Variable in Python
+
+This is a classic Python trick. You can swap two variables using:
+
+#### ✅ Tuple Unpacking (Most Pythonic)
+```python
+x, y = 5, 7
+x, y = y, x
+```
+
+#### ➕ Arithmetic Operations
+```python
+x = x + y
+y = x - y
+x = x - y
+```
+
+#### 🔀 Bitwise XOR (Efficient for Integers)
+```python
+x = x ^ y
+y = x ^ y
+x = x ^ y
+```
+
+Each method avoids using a third variable and demonstrates Python’s flexibility.
+
+---
+
+### 📦 Difference Between Tuple and List in Python
+
+| Feature           | List                          | Tuple                         |
+|------------------|-------------------------------|-------------------------------|
+| Mutability        | Mutable (can be changed)       | Immutable (cannot be changed) |
+| Syntax            | Square brackets `[]`           | Parentheses `()`              |
+| Performance       | Slower iteration               | Faster iteration              |
+| Memory Usage      | More memory                    | Less memory                   |
+| Built-in Methods  | Many (e.g., `append`, `remove`) | Few                           |
+| Use Case          | Dynamic data                   | Fixed data                    |
+
+**Example**:
+```python
+# List
+a = [1, 2, 3]
+a[0] = 10  # Allowed
+
+# Tuple
+b = (1, 2, 3)
+b[0] = 10  # Error: 'tuple' object does not support item assignment
+```
+
+Tuples are preferred when data shouldn’t change, while lists are ideal for dynamic collections.
+
+---
+
+### 🎨 What is Bootstrap?
+
+**Bootstrap** is a popular open-source front-end framework developed by Twitter. It provides:
+- Predefined CSS classes and JavaScript components
+- A responsive grid system for layout
+- Mobile-first design philosophy
+
+It helps developers build visually appealing, responsive websites quickly without writing custom CSS from scratch.
+
+---
+
+### ⚖️ Advantages of Bootstrap Over CSS
+
+| Feature                  | Bootstrap                              | Plain CSS                             |
+|--------------------------|----------------------------------------|----------------------------------------|
+| Grid System              | Built-in 12-column responsive grid     | Manual layout with media queries       |
+| Pre-styled Components    | Buttons, cards, navbars, modals        | Must be styled manually                |
+| Responsiveness           | Mobile-first by default                | Requires custom media queries          |
+| Development Speed        | Faster with reusable classes           | Slower due to manual styling           |
+| Community & Docs         | Extensive documentation and support    | Depends on developer skill             |
+
+**In short**: Bootstrap accelerates development and ensures consistency across devices.
+
+---
+
+### 🔄 What is AJAX?
+
+**AJAX (Asynchronous JavaScript and XML)** is a technique that allows web pages to:
+- Send and receive data from a server
+- Update parts of the page dynamically
+- Avoid full page reloads
+
+It uses the `XMLHttpRequest` object or `fetch()` API in JavaScript to make background server calls.
+
+---
+
+### 🚀 Main Advantage of AJAX
+
+The **key benefit** of AJAX is its ability to:
+> “Update parts of a web page without reloading the entire page.”
+
+This leads to:
+- Faster interactions
+- Reduced server load
+- Improved user experience (e.g., live search, form validation).
+
+---
+
+### 📜 What is JavaScript?
+
+**JavaScript** is a high-level, interpreted programming language used to:
+- Add interactivity to web pages (e.g., animations, form validation)
+- Manipulate HTML and CSS dynamically
+- Handle events and asynchronous operations
+
+It runs in the browser and powers most modern web applications. With tools like Node.js, it can also run on servers.
+
+---
+
+These questions were part of the **managerial interview round** for the Technology Consultant role at PwC India, as described in the [GeeksforGeeks interview experience](https://www.geeksforgeeks.org/interview-experiences/pwc-interview-experience-set-1-on-campus-technology-consultant/). They test your foundational understanding of computer science concepts and your ability to explain them clearly. Here's a breakdown tailored to that context:
+
+---
+
+### 🆚 Difference Between DBMS and RDBMS
+
+| Feature                  | DBMS                                      | RDBMS                                      |
+|--------------------------|-------------------------------------------|--------------------------------------------|
+| Data Storage             | Stores data as files                      | Stores data in tabular format              |
+| Relationships            | No relationships between data             | Tables are related via keys                |
+| Normalization            | Not supported                             | Supported                                  |
+| Security                 | Basic                                     | Advanced (multi-layered)                   |
+| Users                    | Single-user systems                       | Multi-user systems                         |
+| Examples                 | XML, dBase, File System                   | MySQL, Oracle, PostgreSQL, SQL Server      |
+
+**Summary**: RDBMS is a more advanced, structured form of DBMS that supports relationships, constraints, and scalability.
+
+---
+
+### 📋 Examples of DBMS
+
+Some common DBMS examples include:
+- **File-based systems**: Windows Registry, CSV files
+- **Hierarchical DBMS**: IBM IMS
+- **Network DBMS**: Integrated Data Store (IDS)
+- **Object-oriented DBMS**: db4o, ObjectDB
+
+These systems are typically used in smaller setups or specialized applications where relational modeling isn’t required.
+
+---
+
+### 📚 Which Is Your Second Favorite Subject?
+
+This is a behavioral question aimed at gauging your academic interests beyond your primary strength. A good answer might be:
+> “My second favorite subject is Computer Networks. While I enjoy system design and backend engineering, networking fascinates me because it underpins how distributed systems communicate efficiently and securely.”
+
+---
+
+### 🌐 Explain Computer Networking
+
+**Computer Networking** is the practice of connecting multiple computing devices to share data and resources. Key components include:
+- **Nodes**: Devices like computers, routers, switches
+- **Links**: Wired (Ethernet, fiber) or wireless (Wi-Fi, Bluetooth)
+- **Protocols**: Rules for communication (e.g., TCP/IP, HTTP)
+- **Types**: LAN, WAN, MAN, PAN, VPN
+
+Networks enable everything from email and cloud storage to real-time collaboration and IoT.
+
+---
+
+### 📱 What Is UI Responsiveness?
+
+**UI Responsiveness** refers to how quickly and smoothly a user interface reacts to user input. It includes:
+- **Fast load times**
+- **Smooth animations**
+- **Adaptive layouts** (responsive design)
+- **Minimal lag or delay**
+
+Responsive UIs improve user experience across devices and screen sizes, often using CSS media queries, fluid grids, and asynchronous JavaScript.
+
+---
+
+### 🏗️ Difference Between 2-Tier and 3-Tier Architecture
+
+| Feature               | 2-Tier Architecture                        | 3-Tier Architecture                          |
+|-----------------------|--------------------------------------------|----------------------------------------------|
+| Layers                | Client + Database                          | Client + Application Server + Database       |
+| Communication         | Direct between client and DB               | Via middle layer (business logic)            |
+| Security              | Less secure                                | More secure (no direct DB access)            |
+| Scalability           | Limited                                    | Highly scalable                              |
+| Maintenance           | Harder to update                           | Easier to maintain and extend                |
+| Use Case              | Small apps (e.g., MS Access)               | Large apps (e.g., e-commerce platforms)      |
+
+**Summary**: 3-tier architecture introduces a middle layer for business logic, making systems more modular, secure, and scalable.
+
+---

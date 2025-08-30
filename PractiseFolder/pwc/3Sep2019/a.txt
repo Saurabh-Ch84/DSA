@@ -1,0 +1,183 @@
+Great picks, Saurabh — these were part of the technical round in the [PwC-SDC interview experience for SDE](https://www.geeksforgeeks.org/interview-experiences/pwc-sdc-interview-experience-for-sde/). Let’s break them down with precision and flair:
+
+---
+
+### 🐍 Special Features of Python 3
+
+Python 3 introduced several enhancements over Python 2, making it more robust, readable, and future-proof. Key features include:
+
+- **Print as a Function**: `print()` instead of `print ""` — enforces consistency.
+- **Unicode by Default**: Strings are Unicode, improving internationalization.
+- **Integer Division**: `5 / 2` gives `2.5`; use `//` for floor division.
+- **Type Hints**: Optional static typing via `def func(x: int) -> str`.
+- **Extended Iterable Unpacking**: `a, *rest, b = [1,2,3,4,5]`.
+- **f-Strings**: Elegant string interpolation: `f"Hello {name}"`.
+- **Async/Await Syntax**: Native support for asynchronous programming.
+- **Improved Error Messages**: Cleaner tracebacks and diagnostics.
+- **New Modules**: `pathlib`, `statistics`, `enum`, `typing`, etc.
+
+Python 3 also dropped legacy constructs like `raw_input()` and old-style classes, streamlining the language.
+
+---
+
+### 🔁 Print 1–100 Without Using Loop Conditions in Python
+
+This classic interview challenge tests your creativity. Here are two elegant solutions:
+
+#### ✅ Method 1: Recursion
+```python
+def print_nums(n):
+    if n > 0:
+        print_nums(n - 1)
+        print(n)
+
+print_nums(100)
+```
+- **No loop used**.
+- Uses function call stack to simulate iteration.
+- Be cautious: Python has a recursion depth limit (~1000 by default).
+
+#### ✅ Method 2: Functional Programming
+```python
+list(map(print, range(1, 101)))
+```
+- Uses `map()` to apply `print` to each number.
+- `range(1, 101)` generates numbers from 1 to 100.
+- Efficient and concise.
+
+Both methods bypass explicit loop constructs (`for`, `while`) while achieving the same result.
+
+---
+
+### 🧠 What Is a Neural Network in Machine Learning?
+
+A **neural network** is a machine learning model inspired by the structure and function of the human brain. It consists of layers of interconnected nodes (called **neurons**) that process data and learn patterns.
+
+#### 🔧 Core Components:
+- **Input Layer**: Receives raw data (e.g., pixel values, features).
+- **Hidden Layers**: Perform computations using weights, biases, and activation functions.
+- **Output Layer**: Produces predictions or classifications.
+
+Each neuron computes a weighted sum of its inputs, applies an activation function (like ReLU or sigmoid), and passes the result to the next layer.
+
+#### 🔁 Learning Process:
+1. **Forward Propagation**: Data flows through the network to generate output.
+2. **Loss Calculation**: Measures how far the output is from the expected result.
+3. **Backpropagation**: Adjusts weights and biases to minimize error using gradient descent.
+
+---
+
+### 🚀 Why Neural Networks Matter
+
+Neural networks excel at:
+- **Pattern recognition** (e.g., image, speech, text)
+- **Function approximation**
+- **Adaptive learning** from large datasets
+
+They power technologies like:
+- Self-driving cars
+- Voice assistants
+- Fraud detection
+- Medical diagnosis
+
+---
+
+### 🔗 Types of Joins in DBMS
+
+Joins combine rows from two or more tables based on related columns:
+
+| Join Type        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| **Inner Join**   | Returns rows with matching values in both tables                            |
+| **Equi Join**    | A type of inner join using `=` operator                                     |
+| **Natural Join** | Automatically joins on columns with same name and domain                    |
+| **Theta Join**   | Uses comparison operators like `<`, `>`, `!=` in join condition             |
+| **Outer Join**   | Includes unmatched rows; can be Left, Right, or Full                        |
+
+Each join type serves different use cases depending on how you want to merge data.
+
+---
+
+### 🧮 Set Operators in DBMS
+
+Set operators combine results from multiple `SELECT` queries:
+
+| Operator     | Description                                                                 |
+|--------------|-----------------------------------------------------------------------------|
+| **UNION**    | Combines results and removes duplicates                                     |
+| **UNION ALL**| Combines results and retains duplicates                                     |
+| **INTERSECT**| Returns common rows from both queries                                       |
+| **MINUS**    | Returns rows from first query not present in second                         |
+
+**Example**:
+```sql
+SELECT name FROM table1
+UNION
+SELECT name FROM table2;
+```
+This returns a distinct list of names from both tables.
+
+---
+
+### ☕ `public static void main` — Meaning of Each Identifier in Java
+
+- **public**: Accessible from anywhere; required so JVM can invoke it.
+- **static**: Belongs to the class, not an instance; JVM calls it without creating an object.
+- **void**: Doesn’t return any value.
+- **main**: Entry point of the program.
+- **String[] args**: Accepts command-line arguments as an array of strings.
+
+This signature is mandatory for Java program execution.
+
+---
+
+### 📂 Display List of Files in Current Folder Using Python
+
+Use the `os` module:
+
+```python
+import os
+files = [f for f in os.listdir('.') if os.path.isfile(f)]
+print(files)
+```
+
+This lists all files (not directories) in the current working directory.
+
+---
+
+### 🧱 Define Entity, Primary Key, and Foreign Key
+
+- **Entity**: A real-world object represented as a table in DBMS (e.g., Student, Employee).
+- **Primary Key**: Uniquely identifies each row; cannot be null or duplicate.
+- **Foreign Key**: References the primary key of another table to establish relationships.
+
+**Example**:
+```sql
+CREATE TABLE Student (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+CREATE TABLE Enrollment (
+  enrollment_id INT PRIMARY KEY,
+  student_id INT,
+  FOREIGN KEY (student_id) REFERENCES Student(student_id)
+);
+```
+This links `Enrollment` to `Student` via `student_id`.
+
+---
+
+### 🔀 SQL Query to Do a Union of Two Tables
+
+```sql
+SELECT column1 FROM tableA
+UNION
+SELECT column1 FROM tableB;
+```
+
+- Ensures **distinct** results.
+- Use `UNION ALL` to include duplicates.
+- Columns must match in number and data type.
+
+---

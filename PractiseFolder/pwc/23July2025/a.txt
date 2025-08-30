@@ -1,0 +1,229 @@
+---
+
+### 🔁 Difference Between Java & Python
+
+**From the interview context**, this question tests your grasp of core language paradigms. Here's a concise comparison:
+
+| Feature              | Java                                      | Python                                    |
+|----------------------|-------------------------------------------|-------------------------------------------|
+| Typing               | Statically typed                          | Dynamically typed                         |
+| Compilation          | Compiled to bytecode, then run on JVM     | Interpreted line-by-line                  |
+| Syntax               | Verbose, strict with semicolons/braces    | Concise, readable, indentation-based      |
+| Speed                | Faster due to compilation and JVM optimizations | Slower due to runtime type resolution     |
+| Use Cases            | Enterprise apps, Android, backend systems | Data science, scripting, web development  |
+| Multiple Inheritance | Via interfaces                            | Directly supported                        |
+
+Java is more rigid but performant; Python is more flexible and expressive.
+
+---
+
+### ⚡ Why Java Is Faster and How It Works
+
+Java’s speed advantage stems from its **hybrid execution model**:
+
+- **Compilation to Bytecode**: Java source code is compiled into bytecode (.class files).
+- **Java Virtual Machine (JVM)**: Bytecode runs on the JVM, which interprets or compiles it to native machine code.
+- **Just-In-Time (JIT) Compilation**: JVM uses JIT to compile frequently used bytecode into native code at runtime, boosting performance.
+- **Garbage Collection**: Java’s memory management is optimized, reducing overhead from manual allocation/deallocation.
+
+This makes Java faster than interpreted languages like Python, especially for long-running or compute-intensive applications.
+
+---
+
+### 🛡️ What Do You Know About Vulnerability?
+
+In cybersecurity, a **vulnerability** is a weakness in a system that can be exploited by attackers. It can exist in:
+
+- **Software**: Bugs, insecure code, outdated libraries (e.g., SQL injection, buffer overflow).
+- **Hardware**: Firmware flaws, physical access risks.
+- **Network**: Open ports, weak encryption, misconfigured firewalls.
+- **Human Factors**: Poor password hygiene, social engineering.
+
+Vulnerabilities become threats when discovered and exploited. Regular patching, secure coding, and awareness are key defenses.
+
+---
+
+### 🔐 How Firewall Works
+
+A **firewall** is a security system that monitors and filters network traffic based on predefined rules:
+
+- **Packet Filtering**: Inspects headers of data packets (IP, port, protocol).
+- **Stateful Inspection**: Tracks active connections and allows only valid responses.
+- **Proxy Service**: Acts as an intermediary to isolate internal systems.
+- **Default Policy**: Determines what happens when no rule matches (accept, reject, drop).
+
+Firewalls can be hardware-based (e.g., routers) or software-based (e.g., OS firewalls). They’re essential for blocking unauthorized access, malware, and data leaks.
+
+---
+
+### 🗃️ What is SQL?
+
+**SQL (Structured Query Language)** is the standard language used to interact with relational databases. It allows you to:
+- Create and modify tables (`CREATE`, `ALTER`)
+- Insert, update, delete data (`INSERT`, `UPDATE`, `DELETE`)
+- Query data (`SELECT`)
+- Control access (`GRANT`, `REVOKE`)
+
+SQL is declarative—meaning you specify *what* you want, not *how* to get it.
+
+---
+
+### 🔗 What is the Referential Integrity Constraint?
+
+Referential integrity ensures that relationships between tables remain consistent:
+- A **foreign key** in one table must match a **primary key** in another.
+- Prevents orphan records (e.g., an order referencing a non-existent customer).
+- Enforced via constraints like `ON DELETE CASCADE` or `ON UPDATE RESTRICT`.
+
+---
+
+### 🧹 What is Normalization?
+
+Normalization is the process of organizing data to reduce redundancy and improve integrity:
+- Splits large tables into smaller ones.
+- Uses **normal forms** (1NF, 2NF, 3NF, BCNF, etc.) to eliminate anomalies (insert, update, delete).
+
+---
+
+### 🧮 Difference Between BCNF and 3NF
+
+| Feature                     | 3NF                                      | BCNF                                     |
+|----------------------------|------------------------------------------|------------------------------------------|
+| Dependency Rule            | Non-prime attributes shouldn’t depend transitively on candidate key | Every determinant must be a super key    |
+| Strength                   | Less strict                              | More strict                              |
+| Dependency Preservation    | Usually preserved                        | May not be preserved                     |
+| Redundancy                 | May remain                               | Eliminated more aggressively             |
+
+BCNF is a stricter version of 3NF and handles edge cases where 3NF fails.
+
+---
+
+### 🧩 What are Design Patterns?
+
+Design patterns are reusable solutions to common software design problems:
+- **Creational** (e.g., Singleton, Factory)
+- **Structural** (e.g., Adapter, Composite)
+- **Behavioral** (e.g., Observer, Strategy)
+
+They improve code **reusability**, **maintainability**, and **communication** among developers.
+
+---
+
+### 🧠 Why Do We Use Power BI? Case Study & Applications
+
+**Power BI** is a business intelligence tool that:
+- Connects to multiple data sources
+- Builds interactive dashboards
+- Enables real-time analytics
+
+**Applications**:
+- Financial reporting
+- Sales tracking
+- Supply chain monitoring
+- Healthcare dashboards
+
+**Case Study**: Metro Bank used Power BI to build 100+ reports, replacing manual Excel workflows and improving decision-making speed.
+
+---
+
+### 💻 Explain Linux Commands
+
+Linux commands are used to interact with the OS via terminal. Some essentials:
+- `ls`, `pwd`, `cd`, `mkdir`, `rm` – file/directory operations
+- `grep`, `cat`, `echo`, `man` – text and help utilities
+- `ps`, `top`, `df`, `chmod` – system monitoring and permissions.
+
+---
+
+### 📥 What is Data Ingestion?
+
+Data ingestion is the process of importing data from various sources into a centralized system:
+- **Batch ingestion**: periodic bulk loads
+- **Real-time ingestion**: continuous streaming (e.g., Kafka, CDC)
+- **Micro-batching**: hybrid approach
+
+It’s the first step in any data pipeline, enabling analytics, ML, and reporting.
+
+---
+
+### 🧱 What is Object-Oriented Programming?
+
+OOP models software as interacting objects. Core principles:
+
+- **Abstraction**: Hide internal details, expose only essentials.
+- **Encapsulation**: Bundle data and methods; restrict direct access.
+- **Inheritance**: Share common behavior via parent-child relationships.
+- **Polymorphism**: One interface, many implementations (e.g., method overriding).
+
+---
+
+These questions were asked during the **technical interview round** for the Cyber Security Analyst role at PwC India, as described in the [GeeksforGeeks interview experience](https://www.geeksforgeeks.org/interview-experiences/pwc-interview-experience-for-senior-analyst/). They assess your understanding of core cybersecurity threats and network architecture. Here's a breakdown tailored to that context:
+
+---
+
+### 🔐 What Is a VPN?
+
+A **VPN (Virtual Private Network)** creates a secure, encrypted tunnel between your device and a remote server, masking your IP address and protecting your data from eavesdropping.
+
+**Key Benefits**:
+- **Privacy**: Hides your browsing activity from ISPs and attackers.
+- **Security**: Encrypts data on public Wi-Fi to prevent interception.
+- **Remote Access**: Enables secure connection to corporate networks.
+- **Geo-unblocking**: Lets users access region-restricted content.
+
+**Types**:
+- Remote Access VPN
+- Site-to-Site VPN
+- Mobile VPN
+- MPLS VPN
+
+---
+
+### 🕵️ What Is a Man-in-the-Middle (MITM) Attack?
+
+A **MITM attack** occurs when an attacker secretly intercepts and possibly alters communication between two parties who believe they’re directly connected.
+
+**How It Works**:
+1. **Interception**: Attacker places themselves between user and server.
+2. **Decryption**: Captures and reads sensitive data like login credentials or financial info.
+3. **Manipulation**: May alter messages or redirect users to fake websites.
+
+**Common Techniques**:
+- HTTPS spoofing
+- ARP/DNS spoofing
+- Session hijacking
+- Evil twin Wi-Fi hotspots
+
+---
+
+### 🎣 What Is Phishing?
+
+**Phishing** is a cyberattack where attackers impersonate trusted entities (e.g., banks, employers) to trick users into revealing sensitive information.
+
+**Tactics**:
+- Fake emails or websites
+- Urgent messages prompting action
+- Malicious attachments or links
+
+**Types**:
+- **Email Phishing**: Mass spam emails
+- **Spear Phishing**: Targeted attacks
+- **Whaling**: Targets executives
+- **Smishing**: SMS-based phishing
+
+**Goal**: Steal credentials, financial data, or install malware.
+
+---
+
+### 🌐 Routers Exist on Which OSI Layer?
+
+Routers operate at **Layer 3 (Network Layer)** of the OSI model.
+
+**Responsibilities of Layer 3**:
+- Routing packets between networks
+- Logical addressing (IP)
+- Path selection and packet forwarding
+
+Routers use IP addresses to determine the best route for data and facilitate inter-network communication.
+
+---

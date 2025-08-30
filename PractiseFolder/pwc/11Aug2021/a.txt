@@ -1,0 +1,237 @@
+
+### 🔐 What Is Encryption?
+
+**Encryption** is the process of converting readable data (plaintext) into an unreadable format (ciphertext) to protect it from unauthorized access. Only someone with the correct decryption key can revert it back to its original form.
+
+- Used to secure data **at rest** (stored) and **in transit** (being transmitted).
+- Common algorithms: AES, RSA, Blowfish, Twofish.
+- Essential for protecting sensitive information like passwords, financial data, and personal records.
+
+---
+
+### 🔑 Symmetric vs Asymmetric Key Encryption
+
+| Feature                  | Symmetric Encryption                          | Asymmetric Encryption                          |
+|--------------------------|-----------------------------------------------|------------------------------------------------|
+| Keys Used                | One key for both encryption and decryption    | Two keys: public (encrypt) and private (decrypt) |
+| Speed                    | Faster, efficient for large data              | Slower, ideal for secure key exchange          |
+| Security                 | Requires secure key sharing                   | More secure; private key never shared          |
+| Use Cases                | File encryption, VPNs                         | SSL/TLS, digital signatures, secure emails     |
+| Examples                 | AES, DES, RC4                                 | RSA, ECC, Diffie-Hellman                   |
+
+Modern systems often use a **hybrid approach**: asymmetric encryption to exchange symmetric keys, then symmetric encryption for bulk data.
+
+---
+
+### 🏗️ 3-Tier Architecture Application in Java
+
+A **3-tier architecture** separates an application into:
+
+1. **Presentation Tier**: UI layer (e.g., JSP, HTML, JavaScript)
+2. **Application Tier**: Business logic (e.g., Servlets, EJBs, Spring)
+3. **Data Tier**: Database layer (e.g., MySQL, Oracle via JDBC)
+
+Benefits:
+- Scalability: Each tier can be scaled independently.
+- Security: Middle tier acts as a firewall between UI and DB.
+- Maintainability: Easier to update or replace components.
+
+---
+
+### ⚖️ When to Use Java vs Python in a Project
+
+**Use Java when**:
+- You need high performance and multithreading.
+- Building large-scale enterprise apps or Android apps.
+- Strong type safety and static analysis are critical.
+
+**Use Python when**:
+- Rapid development or prototyping is needed.
+- Working in data science, AI/ML, automation, or scripting.
+- You value simplicity and readability over raw speed.
+
+Decision depends on project goals, team expertise, and runtime requirements.
+
+---
+
+### 🌐 Find IP Address & Can It Be Hacked?
+
+**To find your IP address**:
+- On Windows: `ipconfig` in Command Prompt.
+- On Mac/Linux: `ifconfig` or `ip a` in Terminal.
+- In Python:  
+  ```python
+  import socket
+  print(socket.gethostbyname(socket.gethostname()))
+  ```
+
+**Can your machine be hacked using it?**
+- **Not directly**, but it can expose you to risks:
+  - **DDoS attacks**
+  - **Port scanning**
+  - **Location tracking**
+  - **Phishing or spoofing attempts**
+
+Using a **VPN**, **firewall**, and avoiding public Wi-Fi helps mitigate these risks.
+
+---
+
+### 🧨 What Is a Dangling Pointer?
+
+A **dangling pointer** is a pointer that continues to reference a memory location after that memory has been deallocated or gone out of scope. It no longer points to valid data, but the pointer itself hasn’t been updated — leading to undefined behavior if accessed.
+
+#### 🔍 Common Causes:
+- **Freeing memory** without nullifying the pointer:
+  ```c
+  int* ptr = malloc(sizeof(int));
+  free(ptr);  // ptr is now dangling
+  ```
+- **Returning address of a local variable**:
+  ```c
+  char* getStr() {
+      char str[10];
+      return str;  // str goes out of scope
+  }
+  ```
+- **Object destruction** in C++:
+  ```cpp
+  int* ptr = new int(5);
+  delete ptr;  // ptr is dangling
+  ```
+
+---
+
+### 🛡️ How to Handle Dangling Pointers
+
+To prevent or mitigate dangling pointers:
+
+- **Set pointer to `NULL` or `nullptr`** after freeing:
+  ```c
+  free(ptr);
+  ptr = NULL;
+  ```
+- **Avoid returning addresses of local variables**.
+- **Use smart pointers** in C++ (`std::unique_ptr`, `std::shared_ptr`) to automate memory management.
+- **Scope-aware allocation**: Prefer stack allocation when possible, and ensure lifetimes are well-managed.
+
+---
+
+### ⚠️ Why It Matters
+
+Accessing a dangling pointer can lead to:
+- **Segmentation faults**
+- **Data corruption**
+- **Security vulnerabilities**
+
+Handling them properly is essential for writing robust and secure systems-level code.
+
+----
+### 🐍 How Comfortable Are You in Python?
+
+This is a self-assessment question. Interviewers want to know:
+- Your familiarity with Python syntax and libraries.
+- Whether you’ve used Python for scripting, data analysis, or backend development.
+- Your ability to solve problems using Pythonic constructs (e.g., list comprehensions, lambda functions, decorators).
+
+A confident answer might include examples like:
+> “I’ve used Python extensively for scripting and algorithmic problem-solving. I’m comfortable with data structures, OOP, and libraries like NumPy and Pandas.”
+
+---
+
+### 📘 What Is a Dictionary in Python?
+
+A **dictionary** is a built-in data structure that stores data as key-value pairs.
+
+#### Key Features:
+- Keys must be **unique** and **immutable** (e.g., strings, numbers, tuples).
+- Values can be of any data type.
+- Fast lookup via hashing.
+
+#### Example:
+```python
+student = {"name": "Saurabh", "age": 21, "branch": "IT"}
+print(student["name"])  # Output: Saurabh
+```
+
+Dictionaries are ideal for mapping relationships and storing structured data.
+
+---
+
+### 🔗 What Are Joins in SQL and Their Types?
+
+**Joins** combine rows from two or more tables based on related columns.
+
+| Join Type        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| **INNER JOIN**   | Returns rows with matching values in both tables                            |
+| **LEFT JOIN**    | Returns all rows from the left table and matched rows from the right        |
+| **RIGHT JOIN**   | Returns all rows from the right table and matched rows from the left        |
+| **FULL JOIN**    | Returns all rows when there is a match in either table                      |
+| **CROSS JOIN**   | Returns Cartesian product of both tables                                    |
+| **SELF JOIN**    | Joins a table with itself                                                   |
+
+Used to retrieve meaningful relationships across normalized tables.
+
+---
+
+### 🔁 Bubble Sort Code in C++
+
+A classic sorting algorithm that repeatedly swaps adjacent elements if they’re in the wrong order.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int n) {
+    for(int i = 0; i < n - 1; i++)
+        for(int j = 0; j < n - i - 1; j++)
+            if(arr[j] > arr[j + 1])
+                swap(arr[j], arr[j + 1]);
+}
+
+int main() {
+    int arr[] = {5, 1, 4, 2, 8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    bubbleSort(arr, n);
+    for(int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    return 0;
+}
+```
+
+---
+
+### ❌ Do You Know PL/SQL?
+
+The candidate answered **NO**, which is fine if PL/SQL isn’t part of your core skill set. You can pivot by emphasizing strengths in SQL, Python, or C++.
+
+---
+
+### 💬 Which Programming Language Is More Comfortable for You?
+
+The candidate answered **C++**, which suggests:
+- Strong grasp of memory management, pointers, and object-oriented design.
+- Comfort with algorithmic problem-solving and competitive programming.
+
+---
+
+### 🐍 Python Program to Sort an Array Without Using `sort()`
+
+Here’s a simple bubble sort implementation in Python:
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+arr = [5, 1, 4, 2, 8]
+bubble_sort(arr)
+print(arr)  # Output: [1, 2, 4, 5, 8]
+```
+
+This avoids using Python’s built-in `sort()` and demonstrates algorithmic clarity.
+
+---

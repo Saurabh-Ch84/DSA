@@ -1,0 +1,178 @@
+
+### 🔐 What if both steps in two-factor authentication (2FA) are hacked and no biometric fallback exists?
+
+This scenario assumes compromise of both:
+- **Password (knowledge factor)**
+- **OTP or token (possession factor)**
+
+With no biometric (inherence factor), mitigation strategies include:
+
+- **Immediate account lockdown**: Suspend access until identity is verified.
+- **Out-of-band verification**: Use a separate channel (e.g., email, phone call) to confirm user identity.
+- **Behavioral analytics**: Detect anomalies in login patterns (IP, device fingerprinting, geolocation).
+- **Step-up authentication**: Require additional verification like security questions or trusted device confirmation.
+- **Hardware tokens or app-based authenticators**: Replace SMS-based 2FA with more secure methods like YubiKey or Authy.
+
+This tests your ability to think beyond textbook MFA and apply layered defense strategies.
+
+---
+
+### 🧱 Abstract Classes in Java — What Are They? Why Used?
+
+An **abstract class** in Java:
+- Is declared with the `abstract` keyword.
+- Cannot be instantiated directly.
+- Can contain both abstract methods (no body) and concrete methods (with body).
+
+**Why use them?**
+- To define a **base template** for subclasses.
+- Enforce a contract while allowing partial implementation.
+- Promote **code reuse** and **polymorphism**.
+
+**Example**:
+```java
+abstract class Vehicle {
+    abstract void start();  // abstract method
+    void fuelUp() {         // concrete method
+        System.out.println("Fueling...");
+    }
+}
+```
+Used when you want to define common behavior but leave specific implementation to child classes.
+
+---
+
+### 🕵️ Penetration Testing Steps and Tools Used
+
+Penetration testing simulates real-world attacks to uncover vulnerabilities. The standard steps are:
+
+1. **Planning & Reconnaissance**  
+   - Define scope, targets, and rules of engagement.
+   - Tools: OSINT, Whois, Shodan
+
+2. **Scanning**  
+   - Identify open ports and services.
+   - Tools: Nmap, Nessus, Nikto
+
+3. **Gaining Access**  
+   - Exploit vulnerabilities (e.g., SQL injection, XSS).
+   - Tools: Metasploit, Burp Suite
+
+4. **Maintaining Access**  
+   - Establish persistence (e.g., backdoors).
+   - Tools: Netcat, Empire
+
+5. **Analysis & Reporting**  
+   - Document findings, impact, and remediation.
+   - Tools: Dradis, OWASP ZAP reports
+
+This question probes your hands-on experience and understanding of ethical hacking workflows.
+
+---
+
+### 📦 Paging and Virtual Memory
+
+**Paging** is a memory management technique where:
+- Logical memory is divided into fixed-size blocks called **pages**.
+- Physical memory is divided into blocks called **frames**.
+- The **page table** maps pages to frames, allowing non-contiguous memory allocation.
+
+**Virtual Memory** allows a system to use disk space as an extension of RAM:
+- Programs can run even if not fully loaded in physical memory.
+- Implemented via **demand paging**, where pages are loaded only when needed.
+- Enables **multiprogramming**, **memory protection**, and **efficient memory use**.
+
+---
+
+### 🧠 How CPU Accesses Memory for Different Processes
+
+- CPU generates **logical addresses** during execution.
+- The **Memory Management Unit (MMU)** translates these into **physical addresses** using the page table.
+- Each process has its own page table, ensuring isolation.
+- If a required page isn’t in memory, a **page fault** occurs, and the OS loads it from disk.
+
+---
+
+### 🔁 fork() System Call
+
+**fork()** creates a new process by duplicating the calling process:
+- The original is the **parent**, and the new one is the **child**.
+- Both processes continue execution from the point of the fork.
+
+**Return Values**:
+- `0` → returned to the child process.
+- `>0` → returned to the parent (child’s PID).
+- `-1` → error in creating process.
+
+**Example**:
+```c
+pid_t pid = fork();
+if (pid == 0)
+    printf("Child process\n");
+else
+    printf("Parent process\n");
+```
+
+---
+
+### 🧩 What Is a System Call?
+
+A **system call** is a way for user programs to request services from the OS kernel:
+- Examples: `fork()`, `exec()`, `read()`, `write()`, `wait()`
+- Triggers a switch from **user mode** to **kernel mode**
+- Enables access to hardware, memory, files, and processes.
+
+---
+
+### 🧬 What Is a Kernel?
+
+The **kernel** is the core of the operating system:
+- Manages CPU, memory, I/O devices, and processes.
+- Provides system calls and handles context switching.
+- Loaded at system startup and runs in **kernel space**.
+
+---
+
+### 🏗️ Monolithic vs Microkernel
+
+| Feature               | Monolithic Kernel                        | Microkernel                             |
+|----------------------|-------------------------------------------|------------------------------------------|
+| Structure             | All services in one large kernel space   | Minimal kernel; services in user space   |
+| Speed                 | Faster due to direct calls               | Slower due to message passing            |
+| Stability             | Less stable (bugs affect entire system)  | More stable (isolated services)          |
+| Examples              | Linux, Unix                              | MINIX, QNX, Mach                         |
+| Modularity            | Low                                      | High                                     |
+
+Monolithic kernels are efficient but harder to maintain; microkernels are modular and secure.
+
+---
+
+### 🧵 What Is a Thread?
+
+A **thread** is the smallest unit of execution within a process:
+- Shares code, data, and resources with other threads in the same process.
+- Has its own **stack**, **registers**, and **program counter**.
+- Enables **concurrent execution** and **faster context switching**.
+
+**Types**:
+- **User-level threads**: Managed by user libraries.
+- **Kernel-level threads**: Managed by the OS.
+
+**Example**:
+In a browser:
+- One thread handles rendering.
+- Another handles user input.
+- Another downloads data.
+
+**Diagram** (conceptual):
+
+```
+Process
+ ├── Thread 1 (UI)
+ ├── Thread 2 (Network)
+ └── Thread 3 (Rendering)
+```
+
+Each thread runs independently but shares the same memory space.
+
+---
