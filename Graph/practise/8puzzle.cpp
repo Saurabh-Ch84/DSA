@@ -29,8 +29,8 @@ class Solution {
     string parser(vector<vector<int>>& board){
         string state="";
         for(vector<int> &row:board)
-        for(int &num:row)
-        state+=to_string(num);
+            for(int &num:row)
+                state+=to_string(num);
         return state;
     }
     
@@ -49,8 +49,8 @@ class Solution {
             {
                 string state=q.front();
                 q.pop();
-                int zerosIndex=state.find('0');
                 if(state==finalState) return moves;
+                int zerosIndex=state.find('0');
                 for(int &neighbor:adjMatrix[zerosIndex]){
                     string newState=state;
                     swap(newState[neighbor],newState[zerosIndex]);
