@@ -5,8 +5,8 @@ using namespace std;
 /*
 
 A prime number is a positive integer that has exactly two divisors: 1 and itself. 
-The first several prime numbers are 2,3,5,7,11,…
-.
+The first several prime numbers are 2,3,5,7,11,….
+
 Prime factorization of a positive integer is representing it as a product of prime numbers. For example:
 the prime factorization of 111 is 3⋅37;
 the prime factorization of 43 is 43.
