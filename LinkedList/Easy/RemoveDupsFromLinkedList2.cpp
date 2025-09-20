@@ -27,7 +27,7 @@ public:
                     delete delNode;
                 }
                 if(prev) prev->next=curr;
-                else head=prev=curr;
+                else head=curr;
             }
             else{
                 prev=curr;
