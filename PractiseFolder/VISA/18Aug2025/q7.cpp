@@ -40,7 +40,7 @@ class Solution{
         return pq.top();
     }
 
-    //optimal
+    //optimal Using quick select;
     int findKthLargestElement3(vector<int> nums,int k){
         int n=nums.size();
         int left=0,right=n-1;

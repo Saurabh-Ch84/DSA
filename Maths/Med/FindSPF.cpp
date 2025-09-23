@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int MAXN = 1000000;
+const int MAXN = 1e6;
 vector<int> spf(MAXN+1);
 
 void sieve() {
