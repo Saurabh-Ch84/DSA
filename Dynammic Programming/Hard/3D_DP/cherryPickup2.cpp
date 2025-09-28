@@ -76,6 +76,43 @@ public:
     }
 };
 
+// Easy Solution
+class Solution2 {
+    bool isValid(int j,int m){
+        return (j>=0 && j<m);
+    }
+
+    int memoization(vector<vector<int>>& grid,int i,int j1,int j2,vector<int> &dj,
+                  int n,int m,vector<vector<vector<int>>> &dp)
+    {
+        if(i==n) return 0;
+        if(dp[i][j1][j2]!=-1) return dp[i][j1][j2];
+        int maxCherry=0;
+        int currentCherry= grid[i][j1] + ((j1==j2)? 0: grid[i][j2]);
+
+        for(int k1=0;k1<3;k1++){
+            int nJ1=j1+dj[k1];
+            if(!isValid(nJ1,m)) 
+                continue;
+            for(int k2=0;k2<3;k2++){
+                int nJ2=j2+dj[k2];
+                if(!isValid(nJ2,m)) 
+                    continue;
+                int next=memoization(grid,i+1,nJ1,nJ2,dj,n,m,dp);
+                maxCherry=max(maxCherry,currentCherry+next);
+            }
+        }
+        return dp[i][j1][j2]=maxCherry;
+    }
+public:
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n=grid.size(),m=grid[0].size();
+        vector<int> dj={-1,0,1};
+        vector<vector<vector<int>>> dp(n,vector<vector<int>>(m,vector<int>(m,-1)));
+        return memoization(grid,0,0,m-1,dj,n,m,dp);
+    }
+};
+
 int main(){
 
 return 0;
