@@ -2,6 +2,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+using pii=pair<int,int>;
+
 class SegmentTree{
     int n;
     vector<int> segTreeMax,segTreeMin;
@@ -50,7 +52,7 @@ class SegmentTree{
     }
 };
 
-class Solution {
+class Solution1 {
   public:
     vector<int> longestSubarray(vector<int>& arr, int x) {
         // code here
@@ -90,8 +92,77 @@ void print(vector<int> arr){
     cout<<endl;
 }
 
+class Solution2 {
+  public:
+    vector<int> longestSubarray(vector<int>& arr, int x) {
+        // code here
+        priority_queue<pii,vector<pii>> maxHeap;
+        priority_queue<pii,vector<pii>,greater<pii>> minHeap;
+        maxHeap.push({arr[0],0});
+        minHeap.push({arr[0],0});
+        
+        int maxLen=1,start=0,n=arr.size();
+        int left=0,right=1;
+        
+        while(right<n){
+            int num=arr[right];
+            maxHeap.push({num,right});
+            minHeap.push({num,right});
+            
+            while(maxHeap.top().first-minHeap.top().first>x){
+                left=min(maxHeap.top().second,minHeap.top().second)+1;
+                while(minHeap.top().second<left)
+                    minHeap.pop();
+                while(maxHeap.top().second<left)
+                    maxHeap.pop();
+            }
+            
+            if(right-left+1 > maxLen){
+                start=left;
+                maxLen=right-left+1;
+            }
+            
+            right++;
+        }
+        
+        vector<int> res;
+        for(int i=0;i<maxLen;i++)
+            res.push_back(arr[start+i]);
+        
+        return res;
+    }
+};
+
+class Solution3 {
+  public:
+    vector<int> longestSubarray(vector<int>& arr, int x) {
+        // code here
+        multiset<int> hashSet;
+        int left=0,right=1,n=arr.size();
+        int start=0,maxLen=1;
+        hashSet.insert(arr[left]);
+        
+        while(right<n){
+            hashSet.insert(arr[right]);
+            while(*hashSet.rbegin()-*hashSet.begin()>x){
+                hashSet.erase(hashSet.find(arr[left]));
+                left++;
+            }
+            if(right-left+1>maxLen){
+                start=left;
+                maxLen=right-left+1;
+            }
+            right++;
+        }
+        vector<int> res;
+        for(int i=0;i<maxLen;i++)
+            res.push_back(arr[i+start]);
+        return res;
+    }
+};
+
 int main(){
-    Solution s;
+    Solution1 s;
     vector<int> arr={9,8,3,1,5,3,3,7,3,6};
     int x=5;
     print(s.longestSubarray(arr,x));
