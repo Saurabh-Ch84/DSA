@@ -1,8 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
-class Solution {
+class Solution1 {
     void recursion(string &p,vector<string> &a,vector<vector<int>> &m,int i,int j,int n){
         if(i==n-1 && j==n-1){
             a.push_back(p);
@@ -46,6 +47,41 @@ class Solution {
         recursion(path,ans,maze,0,0,n);
         sort(ans.begin(),ans.end());
         return ans;
+    }
+};
+
+class Solution2 {
+    bool isValid(int i,int j,int n,int m){
+        return (i<n && j<m && i>=0 && j>=0);
+    }
+    
+    void recursion(vector<string> &result,vector<vector<int>>& maze,string &path,vector<int> &di,
+                  vector<int> &dj,string &moves,int i,int j,int n,int m)
+    {
+        if(maze[i][j]==0) return ;
+        if(i==n-1 && j==m-1)                  {
+            result.push_back(path);
+            return ;
+        }
+        maze[i][j]=0;
+        for(int k=0;k<4;k++){
+            int i_=i+di[k],j_=j+dj[k];
+            if(!isValid(i_,j_,n,m)) continue;
+            path.push_back(moves[k]);
+            recursion(result,maze,path,di,dj,moves,i_,j_,n,m);
+            path.pop_back();
+        }
+        maze[i][j]=1;
+    }
+  public:
+    vector<string> ratInMaze(vector<vector<int>>& maze) {
+        // code here
+        int sX=0,sY=0,n=maze.size(),m=maze[0].size();
+        vector<string> result;
+        string path,moves="DLRU";
+        vector<int> di={1,0,0,-1},dj={0,-1,1,0};
+        recursion(result,maze,path,di,dj,moves,sX,sY,n,m);
+        return result;
     }
 };
 
