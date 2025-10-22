@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution1 {
     void buildFreqArr(vector<int> &nums,vector<int> &freqArr,int maxi){
         for(int &num: nums) freqArr[num]++;
         for(int i=1;i<=maxi;i++)
@@ -31,6 +31,42 @@ public:
         }
         return maxFreq;
     }
+};
+
+
+class Solution2 {
+    void buildDiffArr(vector<int> &nums,int k,int n,int maxi,vector<int> &diffArr,unordered_map<int,int> &freqMap){
+        for(int i=0;i<n;i++){
+            freqMap[nums[i]]++;
+            int l=max(nums[i]-k,0);
+            int r=nums[i]+k;
+            diffArr[l]++;
+            diffArr[r+1]--;
+        }
+        for(int target=1;target<=maxi;target++){
+            diffArr[target]+=diffArr[target-1];
+        }
+    }
+public:
+    int maxFrequency(vector<int>& nums, int k, int numOperations){
+        int maxi=*max_element(nums.begin(),nums.end())+k;
+        int n=nums.size();
+
+        unordered_map<int,int> freqMap;
+        vector<int> diffArr(maxi+2,0);
+
+        buildDiffArr(nums,k,n,maxi,diffArr,freqMap);
+        int maxFreq=1;
+
+        for(int target=0;target<=maxi;target++){
+            int total=diffArr[target];
+            int targetFreq=freqMap[target];
+            int needConversion=total-targetFreq;
+            int possible=min(numOperations,needConversion);
+            maxFreq=max(maxFreq,targetFreq+possible);
+        }
+        return maxFreq;
+    }   
 };
 
 int main(){
