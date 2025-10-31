@@ -13,7 +13,6 @@ class Solution {
         return false;
     }
 
-
     bool BFS(vector<int> &ind,vector<vector<int>> &adjL){
         queue<int> q;
         int nodes=0;
