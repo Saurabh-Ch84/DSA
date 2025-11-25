@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<unordered_map>
 using namespace std;
 
 //Striver's version
@@ -21,6 +22,29 @@ public:
             right++;
         }
         return maxLen;
+    }
+};
+
+class Solution2 {
+public:
+    int characterReplacement(string s, int k) {
+        int n=s.length(),maxf=0,maxlen=0;
+        int left=0,right=0;
+        unordered_map<char,int> freqMap;
+
+        while(right<n){ 
+            freqMap[s[right]]++;
+            maxf=max(maxf,freqMap[s[right]]);
+            int ops=(right-left+1)-maxf;
+            if(ops>k){
+                freqMap[s[left]]--;
+                left++;
+            }
+            else maxlen=max(maxlen,right-left+1);
+            right++;
+        }
+
+        return maxlen;
     }
 };
 

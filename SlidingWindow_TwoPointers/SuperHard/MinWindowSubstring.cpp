@@ -1,9 +1,10 @@
 #include<iostream>
 #include<unordered_map>
 #include<vector>
+#include<climits>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     string minWindow(string s, string t) {
         int n=s.length(),m=t.length();
@@ -29,6 +30,36 @@ public:
             right++;
         }
         return minLen == 1e9 ? "" : s.substr(idx, minLen);
+    }
+};
+
+class Solution2 {
+public:
+    string minWindow(string s, string t) {
+        int minLen=INT_MAX,st=-1;
+        unordered_map<char,int> hashMapT;
+        for(char ch: t) hashMapT[ch]++;
+
+        int n=s.length(),left=0,right=0,count=0,m=hashMapT.size();
+        unordered_map<char,int> hashMapS;
+        while(right<n){
+            hashMapS[s[right]]++;
+            if(hashMapS[s[right]]==hashMapT[s[right]])
+                count++;
+            while(count>=m && left<=right){
+                int windLen=right-left+1;
+                if(minLen>windLen){
+                    st=left;
+                    minLen=windLen;
+                }
+                if(hashMapS[s[left]]==hashMapT[s[left]]) 
+                    count--;
+                hashMapS[s[left]]--;
+                left++;
+            }
+            right++;
+        }
+        return (st==-1) ? "": s.substr(st,minLen);
     }
 };
 
