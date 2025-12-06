@@ -2,6 +2,43 @@
 #include<vector>
 using namespace std;
 
+using vs = vector<string> ;
+using vb = vector<bool> ;
+using vvs = vector<vs> ;
+
+class Solution {
+    void recursion(int c,int n,vs &board,vb &row,vb &diagonal,vb &antidiagonal,vvs &ans){
+        if(c>=n){
+            ans.push_back(board);
+            return ;
+        }
+        for(int r=0;r<n;r++){
+            int diagIdx=r+c;
+            int antiDiagIdx=n-1+(r-c);
+            if(!row[r] && !diagonal[diagIdx] && !antidiagonal[antiDiagIdx]){
+                row[r]=true;
+                diagonal[diagIdx]=true;
+                antidiagonal[antiDiagIdx]=true;
+                board[r][c]='Q';
+                recursion(c+1,n,board,row,diagonal,antidiagonal,ans);
+                board[r][c]='.';
+                antidiagonal[antiDiagIdx]=false;
+                diagonal[diagIdx]=false;
+                row[r]=false;
+            }
+        }
+    }
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vs board(n,string(n,'.'));
+        vb row(n,false);
+        vb diagonal(2*n-1,false),antiDiagonal(2*n-1,false);
+        vector<vs> ans;
+        recursion(0,n,board,row,diagonal,antiDiagonal,ans);
+        return ans;
+    }
+};
+
 class Solution {
     void recursion(int n,vector<string>&c,vector<bool>&r,vector<bool>&d,vector<bool>&s,vector<vector<string>> &a,int col=0){
         if(col==n){

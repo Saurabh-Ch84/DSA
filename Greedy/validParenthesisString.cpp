@@ -3,6 +3,31 @@ using namespace std;
 
 class Solution {
 public:
+    bool checkValidString(string s) {
+        int maxOpen=0,minOpen=0,n=s.length();
+        for(int i=0;i<n;i++){
+            char ch=s[i];
+            if(ch=='('){
+                maxOpen++;
+                minOpen++;
+            }
+            else if(ch=='*'){
+                maxOpen++;
+                minOpen--;
+            }
+            else{
+                minOpen--;
+                maxOpen--;
+            }
+            if(maxOpen<0) return false;
+            if(minOpen<0) minOpen=0;
+        }
+        return minOpen==0;
+    }
+};
+
+class Solution {
+public:
     bool checkValidString(string s)
     {
         int balance=0;

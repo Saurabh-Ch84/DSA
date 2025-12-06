@@ -27,13 +27,13 @@ using vi=vector<int> ;
 class Solution2 {
     struct Comp{
         bool operator()(const vi &a,const vi &b) const{
-            long long distA=1LL*a[0]*a[0]+1LL*a[1]*a[1];
-            long long distB=1LL*b[0]*b[0]+1LL*b[1]*b[1];
+            long long distA=Solution2::distanceFromOrigin(a[0],a[1]);
+            long long distB=Solution2::distanceFromOrigin(b[0],b[1]);
             return distA<distB;
         }
     };
     
-    long long distanceFromOrigin(int x,int y){
+    static long long distanceFromOrigin(int x,int y){
         return 1LL*x*x+1LL*y*y;
     }
   public:
@@ -53,13 +53,11 @@ class Solution2 {
                 }
             }
         }
-        
         vector<vi> res;
         while(!pq.empty()){
             res.push_back(pq.top());
             pq.pop();
         }
-        
         return res;
     }
 };

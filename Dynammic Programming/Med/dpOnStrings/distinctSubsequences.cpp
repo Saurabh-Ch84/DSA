@@ -2,6 +2,26 @@
 #include<vector>
 using namespace std;
 
+using vi = vector<int> ;
+using vvi = vector<vi> ;
+class Solution {
+    int recursion(int i,int j,int n,int m,string &s,string &t,vvi &dp){
+        if(j>=m) return 1;
+        if(i>=n) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int notTake=recursion(i+1,j,n,m,s,t,dp);
+        int take=0;
+        if(s[i]==t[j]) take=recursion(i+1,j+1,n,m,s,t,dp);
+        return dp[i][j]=take+notTake;
+    }
+public:
+    int numDistinct(string s, string t) {
+        int n=s.length(),m=t.length();
+        vvi dp(n,vi(m,-1));
+        return recursion(0,0,n,m,s,t,dp);
+    }
+};
+
 class Solution {
     int recursion(string &s, string &t,int idxS,int idxT,vector<vector<int>> &dp){
         if(idxT<0) return 1;

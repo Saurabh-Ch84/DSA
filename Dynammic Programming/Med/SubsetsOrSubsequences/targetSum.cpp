@@ -3,6 +3,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+using vi = vector<int> ;
+class Solution {
+    int recursion(int i,int n,int target,vi &nums){
+        if(i>=n) return target==0;
+        int take=recursion(i+1,n,target-nums[i],nums);
+        int give=recursion(i+1,n,target+nums[i],nums);
+        return take+give;
+    }
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int n=nums.size();
+        return recursion(0,n,target,nums);
+    }
+};
+
 class Solution {
     int recursion(vector<int>& n,int t,int idx){
         if(idx==0){

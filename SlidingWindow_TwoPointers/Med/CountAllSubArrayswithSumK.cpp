@@ -13,9 +13,9 @@ class Solution {
         for(int &val:arr)
         {
             prefixSum+=val;
-            int removeSum=prefixSum-k;
-            count+=SumNumMap[removeSum];
-            SumNumMap[prefixSum]+=1;
+            int rem=prefixSum-k;
+            count+=SumNumMap[rem];
+            SumNumMap[prefixSum]++;
         }
         return count;
     }

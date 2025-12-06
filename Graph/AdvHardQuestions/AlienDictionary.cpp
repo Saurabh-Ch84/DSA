@@ -4,6 +4,67 @@
 #include<unordered_map>
 using namespace std;
 
+using vi = vector<int> ;
+using vc = vector<char> ;
+using u_mci = unordered_map<char,int> ; 
+using u_mcvc = unordered_map<char,vc> ; 
+
+class Solution {
+    bool process(string &a,string &b,u_mci &indegree,u_mcvc &adjMap){
+        int n=min(a.length(),b.length());
+        int ptr=0;
+        while(ptr<n){
+            if(a[ptr]!=b[ptr]){
+                char u=a[ptr],v=b[ptr];
+                indegree[v]++;
+                adjMap[u].push_back(v);
+                return true;
+            }   
+            ptr++;
+        }
+        return a.length()<=b.length();
+    }
+    string topoSort(u_mci &indegree,u_mcvc &adjMap){
+        int m=indegree.size();
+        queue<char> q;
+        for(auto &p: indegree){
+            char ch=p.first;
+            int deg=p.second;
+            if(deg==0){
+                q.push(ch);
+            }
+        }
+        string result;
+        while(!q.empty()){
+            char u=q.front();q.pop();
+            result.push_back(u);
+            for(char v: adjMap[u]){
+                indegree[v]--;
+                if(indegree[v]==0){
+                    q.push(v);
+                }
+            }
+        }
+        return (result.size()==m ? result: string());
+    }
+  public:
+    string findOrder(vector<string> &words) {
+        // code here
+        int n=words.size();
+        u_mci indegree;
+        for(string &word: words){
+            for(char letter: word) indegree[letter]=0;
+        }
+        u_mcvc adjMap;
+        for(int i=0;i<n-1;i++){
+            if(!process(words[i],words[i+1],indegree,adjMap))
+                return "";
+        }
+        string order=topoSort(indegree,adjMap);
+        return order;
+    }
+};
+
 class Solution {
     pair<char,char> findNodes1(string &a,string &b){
         int left=0,right=0;

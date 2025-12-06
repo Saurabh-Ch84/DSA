@@ -39,37 +39,28 @@ class Solution1 {
     }
 };
 
-//BFS Better
-class Solution2 {
+class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
         if(!root) return {};
-
         queue<TreeNode*> q;
-        vector<int> res;
         q.push(root);
-        res.push_back(root->val);
+        vector<int> ans;
+
         while(!q.empty()){
-            int size=q.size();
-            bool flag=false;
-            for(int i=0;i<size;i++)
-            {
-                TreeNode *node=q.front();
-                q.pop();
+            TreeNode* node_=q.back();
+            ans.push_back(node_->val);
+            int sz=q.size();
+            while(sz){
+                TreeNode* node=q.front();q.pop();
                 if(node->left)
-                {
                     q.push(node->left);
-                    flag=true;
-                }
                 if(node->right)
-                {
                     q.push(node->right);
-                    flag=true;
-                }
+                sz--;
             }
-            if(flag) res.push_back(q.back()->val);
         }
-        return res;
+        return ans;
     }
 };
 

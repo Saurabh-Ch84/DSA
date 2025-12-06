@@ -1,8 +1,28 @@
 #include<iostream>
 #include<queue>
 #include<vector>
+#include<climits>
 #include<unordered_map>
 using namespace std;
+
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<int> dist(n,INT_MAX);
+        dist[src]=0;
+        for(int i=0;i<=k;i++){
+            vector<int> temp=dist;
+            for(vector<int> &flight: flights){
+                int u=flight[0],v=flight[1],c=flight[2];
+                if(dist[u]==INT_MAX) continue;
+                if(dist[u]+c < temp[v])
+                    temp[v]=dist[u]+c;
+            }
+            dist=temp;
+        }
+        return dist[dst]==INT_MAX? -1: dist[dst];
+    }
+};
 
  //
 class Solution {

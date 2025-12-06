@@ -81,6 +81,30 @@ public:
 };
 
 
+using vi = vector<int> ; 
+using u_mii = unordered_map<int,int> ; 
+class Solution {
+    TreeNode* makeTree(int &i,int n,vi &preorder,vi &inorder,u_mii &hashMap,int l,int r){
+        if(i>=n || l>r) return nullptr;
+        int val=preorder[i++];
+        int j=hashMap[val];
+        TreeNode* node=new TreeNode(val);
+        node->left=makeTree(i,n,preorder,inorder,hashMap,l,j-1);
+        node->right=makeTree(i,n,preorder,inorder,hashMap,j+1,r);
+        return node;
+    }
+public:
+    TreeNode* buildTree(vi &preorder,vi &inorder) {
+        u_mii hashMap;
+        int n=inorder.size();
+        for(int i=0;i<n;i++)
+            hashMap[inorder[i]]=i;
+        int i=0;
+        return makeTree(i,n,preorder,inorder,hashMap,0,n-1);
+    }
+};
+
+
 int main(){
 
 return 0;

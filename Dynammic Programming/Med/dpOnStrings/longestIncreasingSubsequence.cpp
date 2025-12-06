@@ -2,6 +2,27 @@
 #include<vector>
 using namespace std;
 
+using vi = vector<int> ;
+using vvi = vector<vi> ;
+
+class Solution {
+    int recursion(int i,int n,int p,vi &nums,vvi &dp){
+        if(i>=n) return 0;
+        if(dp[i][p+1]!=-1) return dp[i][p+1];
+        int notTake=recursion(i+1,n,p,nums,dp);
+        int take=0;
+        if(p==-1 || nums[i]>nums[p])
+            take=1+recursion(i+1,n,i,nums,dp);
+        return dp[i][p+1]=max(take,notTake);
+    }
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vvi dp(n,vi(n+1,-1));
+        return recursion(0,n,-1,nums,dp);
+    }
+};
+
 class Solution {
     int recursion(vector<int>&nums,int size,int currIndx,int prevIndx){
         if(currIndx>=size) return 0;

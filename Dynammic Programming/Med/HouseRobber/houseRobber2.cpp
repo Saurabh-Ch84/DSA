@@ -3,6 +3,26 @@
 using namespace std;
 
 class Solution {
+    int robbing(vector<int> &nums,int idx){
+        int prevPrev=0, prev=0;
+        int maxi=0, n=nums.size();
+        for(int i=idx; i<n-(1-idx); i++){
+            maxi = max(prevPrev + nums[i], prev);
+            prevPrev = prev;
+            prev = maxi;
+        }
+        return maxi;
+    }
+public:
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return nums[0];
+        return max(robbing(nums,0), robbing(nums,1));
+    }
+};
+
+
+class Solution {
     public:
         int rob(vector<int>& nums) {
             int n=nums.size();

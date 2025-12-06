@@ -3,8 +3,28 @@
 #include<stack>
 using namespace std;
 
+class Solution1 {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int maxi=0,n=heights.size();
+        stack<int> s;
+        
+        for(int i=0;i<=n;i++){
+            int height=(i==n)? 0:heights[i];
+            while(!s.empty() && height<heights[s.top()]){
+                int idx=s.top();s.pop();
+                int height_=heights[idx];
+                int width=(s.empty())? i : i-s.top()-1;
+                maxi=max(maxi,height_*width);
+            }
+            s.push(i);
+        }
+        return maxi;
+    }
+};
+
 //optimal solution
-class Solution {
+class Solution2 {
 public:
     int largestRectangleArea(vector<int>& heights) {
         int n=heights.size();
@@ -39,7 +59,7 @@ public:
 };
 
 //better solution
-class Solution1 {
+class Solution3 {
     void getNextSmallerElement(vector<int> &heights,vector<int> &nse,int n){
         stack<int> mIStack;
         for(int i=n-1;i>-1;i--){

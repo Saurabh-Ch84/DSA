@@ -2,6 +2,25 @@
 #include<vector>
 using namespace std;
 
+using vvi = vector<vector<int>> ;
+class Solution {
+    int recursion(int i,int j,int n,int m,string &text1,string &text2,vvi &dp){
+        if(i>=n || j>=m) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int notTake=0,take=0;
+        if(text1[i]==text2[j])
+            take=1+recursion(i+1,j+1,n,m,text1,text2,dp);
+        notTake=max(recursion(i+1,j,n,m,text1,text2,dp),recursion(i,j+1,n,m,text1,text2,dp));
+        return dp[i][j]=max(take,notTake);
+    }
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n=text1.length(),m=text1.length();
+        vvi dp(n,vector<int>(m,-1));
+        return recursion(0,0,n,m,text1,text2,dp);
+    }
+};
+
 class Solution {
 
 public:

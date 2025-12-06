@@ -19,7 +19,7 @@ public:
         Node *dummy=new Node(-1);
         Node *t1=list1,*t2=list2,*temp=dummy;
         while(t1 && t2){
-            if(t1->val>t2->val){
+            if(t1->data>t2->data){
                 temp->next=t2;
                 t2=t2->next;
             }
@@ -36,6 +36,7 @@ public:
         return dummy->next;
     }
 };
+
 class Solution1 {
   public:
     Node* sortedMerge(Node* head1, Node* head2) {

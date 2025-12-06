@@ -7,7 +7,7 @@ struct Node
 {
     int data;
     struct Node *next;
-}
+};
 
 class Solution {
   public:

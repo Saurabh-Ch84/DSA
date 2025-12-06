@@ -1,6 +1,40 @@
 #include<iostream>
 using namespace std;
 
+class Solution {
+    class Trie{
+            public:
+        Trie* children[26];
+        bool isEnd;
+        
+        Trie() {
+            isEnd=false;
+            for(int i=0;i<26;i++) 
+                children[i]=nullptr;
+        }
+    };
+  public:
+    int countSubs(string& s) {
+        // code here
+        Trie* root=new Trie();
+        int n=s.length(),count=0;
+        
+        for(int i=0;i<n;i++){
+            Trie* current=root;
+            for(int j=i;j<n;j++){
+                int idx=s[j]-'a';
+                if(!current->children[idx]){
+                    current->children[idx]=new Trie();
+                    count++;
+                }
+                current=current->children[idx];
+            }
+        }
+        
+        return count;
+    }
+};
+
 /*You are required to complete this method */
 class Node{
     Node *link[26];

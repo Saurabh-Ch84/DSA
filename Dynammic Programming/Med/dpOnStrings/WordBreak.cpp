@@ -2,6 +2,71 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+class Solution{
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> hashSet(wordDict.begin(), wordDict.end());
+        int n = s.size();
+        vector<bool> dp(n+1, false);
+        dp[0] = true;
+
+        for(int i = 0; i <n ; i++) {
+            if(!dp[i]) continue;
+            for(int len = 1; len <= n-i; len++) {
+                if(hashSet.count(s.substr(i,len)))
+                    dp[i+len]=true;
+            }
+        }
+        return dp[n];
+    }
+};
+
+
+class Solution{
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        int n = s.size();
+        vector<bool> dp(n+1, false);
+        dp[n] = true;
+
+        for(int i = n-1; i >= 0; i--) {
+            for(int len = 1; len <= n-i; len++) {
+                if(dict.count(s.substr(i, len)) && dp[i+len]) {
+                    dp[i] = true;
+                    break; // no need to check longer substrings
+                }
+            }
+        }
+        return dp[0];
+    }
+};
+
+
+class Solution {
+    bool recursion(int idx,int n,string &s,unordered_set<string> &hashSet){
+        if(idx>=n) return true;
+        int ans=false;
+        string temp;
+        for(int i=idx;i<n;i++){
+            temp.push_back(s[i]);
+            if(hashSet.count(temp)){
+                bool nextAns=recursion(i+1,n,s,hashSet);
+                if(nextAns) return true;
+            }
+        }
+        return ans;
+    }
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n=s.length();
+        unordered_set<string> hashSet;
+        for(string &word: wordDict)
+            hashSet.insert(word);
+        return recursion(0,n,s,hashSet);
+    }
+};
+
 class Solution {
     bool memoization(string &s,int i,int j,unordered_set<string> &hashSet,
                     int n,vector<vector<int>> &dp)
