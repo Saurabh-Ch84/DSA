@@ -3,7 +3,33 @@
 #include<unordered_map>
 using namespace std;
 
-class Solution {
+class Solution1 {
+    long long nC2(int n){
+        return (1LL*n*(n-1))/2;
+    }
+public:
+    //Optimal.
+    int countTrapezoids(vector<vector<int>>& points) {
+        const int MOD=1e9+7;
+        unordered_map<int,int> hashMap;
+        for(vector<int> &point: points){
+            int y=point[1];
+            hashMap[y]++;
+        }
+
+        long long prev=0,res=0;
+        for(auto itrI=hashMap.begin();itrI!=hashMap.end();itrI++){
+            int count=itrI->second;
+            if(count<2) continue;
+            long long curr=nC2(count);
+            res=(res+(curr*prev)%MOD)%MOD;
+            prev=(prev+curr)%MOD;
+        }
+        return (int)res;
+    }
+};
+
+class Solution2 {
     long long nC2(int n){
         return (1LL*n*(n-1))/2;
     }
