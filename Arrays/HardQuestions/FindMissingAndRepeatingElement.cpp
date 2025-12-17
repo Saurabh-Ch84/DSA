@@ -2,6 +2,48 @@
 #include<vector>
 using namespace std;
 
+class Solution{
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        int xor1=0,xor2=0;
+        for(int i=1;i<=n;i++){
+            xor1=xor1^i;
+            xor2=xor2^arr[i-1];
+        }
+        
+        int xorResult=xor1^xor2;
+        int rightMostSetBit=xorResult & ~(xorResult-1);
+        int zeroBucket=0,oneBucket=0;
+        
+        for(int i=0;i<n;i++){
+            if(rightMostSetBit & arr[i]) oneBucket=oneBucket^arr[i];
+            else zeroBucket=zeroBucket^arr[i];
+        }
+        
+        for(int i=1;i<=n;i++){
+            if(rightMostSetBit & i) oneBucket=oneBucket^i;
+            else zeroBucket=zeroBucket^i;
+        }
+        
+        int repeatingNum=-1,missingNum=-1;
+        for(int i=0;i<n;i++){
+            if(arr[i]==zeroBucket){
+                repeatingNum=zeroBucket;
+                missingNum=oneBucket;
+                break;
+            }
+            else if(arr[i]==oneBucket){
+                repeatingNum=oneBucket;
+                missingNum=zeroBucket;
+                break;
+            }
+        }
+        return {repeatingNum,missingNum};
+    }
+};
+
 //optimal solution
 class Solution {
   public:
