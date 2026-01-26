@@ -4,6 +4,40 @@
 #include<climits>
 using namespace std;
 
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int n=s.size(), m=t.size();
+        if(m>n) return "";
+        unordered_map<int,int> hashMap;
+        int countRequired=m;
+        for(char letter: t)
+            hashMap[letter]++;
+        
+        int left=0, right=0;
+        int start=-1, minLen=n+1;
+        while(right<n){
+            char curr=s[right];
+            if(hashMap[curr]>0)
+                countRequired--;
+            hashMap[curr]--;
+            while(countRequired==0){
+                int len=right-left+1;
+                if(len<minLen){
+                    start=left;
+                    minLen=len;
+                }
+                char last=s[left++];
+                hashMap[last]++;
+                if(hashMap[last]>0) 
+                    countRequired++;
+            }
+            right++;
+        }
+        return (start==-1? "" : s.substr(start,minLen));
+    }
+};
+
 class Solution1 {
 public:
     string minWindow(string s, string t) {

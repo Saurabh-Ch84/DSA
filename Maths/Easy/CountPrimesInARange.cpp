@@ -11,7 +11,7 @@ vector<int> prefixPrimes(MAX_R + 1, 0);
 
 void sieve() {
     isPrime[0] = isPrime[1] = false;
-    for (int p = 2; p * p <= MAX_R; p++) {
+    for (int p = 2; p<= MAX_R; p++) {
         if (isPrime[p]) {
             for (int i = p * p; i <= MAX_R; i += p)
                 isPrime[i] = false;
