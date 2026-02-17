@@ -1,0 +1,124 @@
+#include<iostream>
+#include<vector>
+#include<variant>
+#include<bits/stdc++.h>
+using namespace std;
+
+// Full implementation of NestedInteger for local testing
+class NestedInteger {
+    // holds either an int or a vector<NestedInteger>
+    variant<int, vector<NestedInteger>> data;
+public:
+    // Constructors
+    NestedInteger() : data(vector<NestedInteger>{}) {}
+    NestedInteger(int value) : data(value) {}
+    NestedInteger(const vector<NestedInteger> &list) : data(list) {}
+
+    // Set this NestedInteger to hold a single integer
+    void setInteger(int value) {
+        data = value;
+    }
+
+    // Add a NestedInteger to this list. If currently an integer, convert to list first.
+    void add(const NestedInteger &ni) {
+        if (holds_alternative<int>(data)) {
+            int cur = get<int>(data);
+            data = vector<NestedInteger>{ NestedInteger(cur) };
+        }
+        get<vector<NestedInteger>>(data).push_back(ni);
+    }
+
+    // Return true if this NestedInteger holds a single integer
+    bool isInteger() const {
+        return holds_alternative<int>(data);
+    }
+
+    // Return the single integer that this NestedInteger holds
+    int getInteger() const {
+        if (!isInteger()) throw runtime_error("Not an integer");
+        return get<int>(data);
+    }
+
+    // Return the nested list that this NestedInteger holds
+    const vector<NestedInteger> &getList() const {
+        if (isInteger()) throw runtime_error("Not a list");
+        return get<vector<NestedInteger>>(data);
+    }
+};
+
+//Brute-Force
+class NestedIterator {
+    vector<int> flattenList;
+    int itr, n;
+    void recursion(int i,vector<NestedInteger> &nestedList,int m){
+        if(i>=m) return ;
+        if(nestedList[i].isInteger())
+            flattenList.push_back(nestedList[i].getInteger());
+        else{
+            vector<NestedInteger> &list=nestedList[i].getList();
+            recursion(0,list,list.size());
+        }
+        recursion(i+1,nestedList,m);
+    }
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        recursion(0,nestedList,nestedList.size());
+        itr=0;
+        n=flattenList.size();
+    }
+    
+    int next(){
+        if(itr==n) return -1;
+        return flattenList[itr++];
+    }
+    
+    bool hasNext() {
+        return itr!=n;
+    }
+};
+
+
+//optimal
+
+class NestedIterator {
+    stack<NestedInteger*> itrSt;
+    queue<int> q;
+    void recursion(const NestedInteger &nestedObj){
+        if(nestedObj.isInteger()){
+            q.push(nestedObj.getInteger());
+        }
+        else{
+            const vector<NestedInteger> &nestedList=nestedObj.getList();
+            for(const NestedInteger &obj: nestedList) 
+                recursion(obj);
+        }
+    }
+public:
+    NestedIterator(vector<NestedInteger> &nestedList){
+        int n=nestedList.size();
+        for(int i=n-1;i>=0;i--)
+            itrSt.push(&nestedList[i]);
+    }
+    
+    int next(){
+        if (!hasNext()) return -1;
+        int val=q.front();q.pop();
+        return val;
+    }
+    
+    bool hasNext(){ 
+        while(q.empty() && !itrSt.empty()){ 
+            const NestedInteger nestedObj = *itrSt.top();
+            itrSt.pop(); 
+            recursion(nestedObj);
+        }
+        return !q.empty();
+    }
+};
+
+
+
+int main(){
+
+return 0;
+}

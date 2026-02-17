@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 class Solution {
@@ -12,8 +13,8 @@ class Solution {
             int mid=low+(high-low)/2;
             if(arr[low]<=arr[high]){
                 if(minNum>arr[low]){
-                    minIndx=low;
                     minNum=arr[low];
+                    minIndx=low;
                 }
                 break;
             }
@@ -33,6 +34,15 @@ class Solution {
             }
         }
         return minIndx;
+    }
+};
+
+class Solution {
+  public:
+    int findKRotation(vector<int> &arr) {
+        // Code Here
+        int k=min_element(arr.begin(),arr.end())-arr.begin();
+        return k;
     }
 };
 
