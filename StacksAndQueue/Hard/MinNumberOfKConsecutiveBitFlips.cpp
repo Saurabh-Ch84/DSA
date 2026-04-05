@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution1 {
   public:
     int kBitFlips1(vector<int>& arr, int k) {
         // code here
@@ -21,6 +21,7 @@ class Solution {
         }
         return totalCount;
     }
+
     int kBitFlips2(vector<int>& arr, int k) {
         // code here
         deque<bool> dq;
@@ -40,6 +41,27 @@ class Solution {
             else dq.push_back(false);
         }
         return totalCount;
+    }
+};
+
+class Solution2 {
+  public:
+    int kBitFlips(vector<int>& arr, int k) {
+        // code here
+        unordered_set<int> hashSet;
+        int n=arr.size(), count=0, flip=0;
+        
+        for(int i=0;i<n;i++){
+            if(i>=k && hashSet.count(i-k))
+                flip--;
+            if(arr[i]==1 && flip%2==1 || arr[i]==0 && flip%2==0){
+                if(i+k>n) return -1;
+                flip++;
+                count++;
+                hashSet.insert(i);
+            }
+        }
+        return count;
     }
 };
 
