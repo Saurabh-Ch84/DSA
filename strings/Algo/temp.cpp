@@ -27,7 +27,7 @@ class KMP{
         int i=0, j=0;
         vint lps=getLPS(pattern), result;
         while(i<n){
-            if(text[i]==pattern[j]){
+            if(j<m && text[i]==pattern[j]){
                 i++;
                 j++;
                 if(j==m) result.push_back(i-j);
