@@ -43,7 +43,7 @@ class KMP{
 
 int main(){
     KMP kmp;
-    string text = "aabxaabyaabyaab", pattern = "aabyaab";
+    string text = "aaaaaa", pattern = "aa";
     vector<int> matches = kmp.findPattern(pattern, text);
     for(int idx : matches)
         cout << "Pattern found at index: " << idx << endl;
