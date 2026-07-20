@@ -10,7 +10,7 @@ class NumMatrix {
                 int top=area[i-1][j];
                 int left=area[i][j-1];
                 int topLeft=area[i-1][j-1];
-                area[i][j]=top+left-topLeft+matrix[i-1][j-1];
+                area[i][j]=matrix[i-1][j-1]+top+left-topLeft;
             }
         }
     }
