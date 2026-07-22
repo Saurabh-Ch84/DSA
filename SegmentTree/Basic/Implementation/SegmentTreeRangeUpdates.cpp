@@ -72,7 +72,7 @@ class SegmentTree {
         int mid = (low + high)>>1;
         int leftSum = queryRangeUtil(2 * idx + 1, low, mid, l, r);
         int rightSum = queryRangeUtil(2 * idx + 2, mid + 1, high, l, r);
-        return leftSum + rightSum;
+        return leftSum + rightSum;  
     }
 
 public:
