@@ -3,6 +3,29 @@
 #include<climits>
 using namespace std;
 
+class SolutionBest {
+public:
+    int jump(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> startEnd(n,0);
+        for(int i=0;i<n;i++){
+            int maxJump=nums[i]+i;
+            startEnd[i]=max(startEnd[i],maxJump);
+        }
+        int count=0, maxEnd=0, currEnd=0;
+        for(int i=0;i<n;i++){
+            if(i>maxEnd) return -1;
+            if(i>currEnd){
+                count++;
+                currEnd=maxEnd;
+            }
+            maxEnd=max(maxEnd,startEnd[i]);
+        }
+        return count;
+    }
+};
+
+
 class Solution {
 public:
     int jump(vector<int>& nums) {

@@ -17,45 +17,42 @@ using vvpii = vector<vpii> ;
 
 // most optimal
 class Solution {
-    void BFS(vvpii &adjList,vi &knows,priority_queue<pii,vpii,greater<pii>> &pq){
-        while(!pq.empty()){
-            pii personU=pq.top(); pq.pop();
-            int t=personU.first, u=personU.second;
-            if(knows[u]<t) continue;
-            for(pii &personV: adjList[u]){
-                int v=personV.first, t_=personV.second;
-                if(t_<t || knows[v]<=t_) continue;
-                knows[v]=t_;
-                pq.push({t_,v});
-            }
-        }
-    }
+	void Dijkstra(int src,vector<vector<vector<int>>> &adjList,vector<int> &knowTime){
+		knowTime[src]=0;
+		priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+		pq.push({0,src});
+		while(!pq.empty()){
+			vector<int> entry=pq.top(); pq.pop();
+			int t=entry[0], person=entry[1];
+			if(knowTime[person]<t) continue;
+			for(auto &info: adjList[person]){
+				int t_=info[0], person_=info[1];
+				if(t_<t || knowTime[person_]<=t)
+					continue;
+				pq.push({t_,person_});
+				knowTime[person_]=t_;
+			}
+		}
+	}
 public:
-    vi findAllPeople(int n, vvi & meetings, int firstPerson) {
-        vvpii adjList(n);
-        for(vi &meeting: meetings){
-            int x=meeting[0];
-            int y=meeting[1];
-            int t=meeting[2];
-            adjList[x].push_back({y,t});
-            adjList[y].push_back({x,t});
-        }
-
-        vi knows(n,INT_MAX);
-        knows[0]=0;
-        knows[firstPerson]=0;
-
-        priority_queue<pii,vpii,greater<pii>> pq;
-        pq.push({0,0});
-        pq.push({0,firstPerson});
-        BFS(adjList,knows,pq);
-
-        vector<int> ans;
-        for(int i=0;i<n;i++){
-            if(knows[i]!=INT_MAX) 
-                ans.push_back(i) ;
-        }
-        return ans;
+    vector<int> findAllPeople(int n, vector<vector<int>>& meetings, int firstPerson) {
+		vector<vector<vector<int>>> adjList(n);
+		for(auto &meeting: meetings){
+			int x=meeting[0], y=meeting[1], t=meeting[2];
+			adjList[x].push_back({t,y});
+			adjList[y].push_back({t,x});
+		}
+		
+		adjList[0].push_back({0,firstPerson});
+		vector<int> knowTime(n,1e9);
+		Dijkstra(0,adjList,knowTime);
+		
+		vector<int> peopleKnows;
+		for(int i=0;i<n;i++){
+			if(knowTime[i]!=1e9)
+				peopleKnows.push_back(i);
+		}
+		return peopleKnows;
     }
 };
 
