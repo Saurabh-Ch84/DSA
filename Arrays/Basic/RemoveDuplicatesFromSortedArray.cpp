@@ -3,7 +3,7 @@
 using namespace std;
 
 class Solution{
-    void print(const vector<int> &a){
+    void print(vector<int> &a){
         for(int &val:a)
             cout<<val<<" ";
         cout<<endl;

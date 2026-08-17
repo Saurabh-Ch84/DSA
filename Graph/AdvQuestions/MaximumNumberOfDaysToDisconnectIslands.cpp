@@ -41,7 +41,7 @@ public:
                     grid[i][j]=0;
                     int newNumberOfIslands=getNumberOfComps(m,n,grid);
                     if(newNumberOfIslands!=1){
-                        grid[i][j]=0;
+                        grid[i][j]=1;
                         return 1;
                     }
                     grid[i][j]=1;

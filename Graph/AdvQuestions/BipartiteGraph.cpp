@@ -27,7 +27,10 @@ class Solution {
     bool DFS(int i,vector<int> &color,vector<vector<int>> &adj,int col=0){
         if(color[i]!=-1) return color[i]==col;
         color[i]=col;
-        for(int &neighbour:adj[i]) if(!DFS(neighbour,color,adj,1-col)) return false;
+        for(int &neighbour:adj[i]){
+            if(!DFS(neighbour,color,adj,1-col)) 
+                return false;
+        }
         return true;
     }
     

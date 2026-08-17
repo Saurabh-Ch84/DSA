@@ -2,33 +2,32 @@
 #include<vector>
 using namespace std;
 
-using vi = vector<int> ;
-using vvi = vector<vi> ;
-using vs = vector<string> ;
 
 class Solution {
-    bool canFollow(int prev,int j,int n,vs &strs){  
+    using vint=vector<int>;
+    using vvint=vector<vint>;
+    using vstr=vector<string>;
+    bool isValid(vstr &strs,int p,int j,int n){
         for(int i=0;i<n;i++){
-            if(strs[i][prev]>strs[i][j]) return false;
+            if(strs[i][p]>strs[i][j])
+                return false;
         }
         return true;
     }
-
-    int recursion(int j,int n,int m,vs &strs,int prev,vvi &dp){
-        if(j>=m) return 0;
-        if(dp[j][prev+1]!=-1) return dp[j][prev+1];
-        int notTake = recursion(j+1,n,m,strs,prev,dp);
-        int take=0;
-        if(prev==-1 || canFollow(prev,j,n,strs))
-            take = 1 + recursion(j+1,n,m,strs,j,dp);
-        return dp[j][prev+1]=max(notTake,take);
+    int recursion(int j,int p,int n,int m,vstr &strs,vvint &dp){
+        if(j==m) return 0;
+        if(dp[j][p+1]!=-1) return dp[j][p+1];
+        int notTake=recursion(j+1,p,n,m,strs,dp), take=0;
+        if(p==-1 || isValid(strs,p,j,n))
+            take=1+recursion(j+1,j,n,m,strs,dp);
+        return dp[j][p+1]=max(take,notTake);
     }
-
 public:
-    int minDeletionSize(vs &strs) {
+    int minDeletionSize(vector<string>& strs) {
         int n=strs.size(), m=strs[0].size();
-        vvi dp(m,vi(m+1,-1));
-        return m-recursion(0,n,m,strs,-1,dp);
+        vvint dp(m+1,vint(m+1,-1));
+        int globalLIS=recursion(0,-1,n,m,strs,dp);
+        return m-globalLIS;
     }
 };
 

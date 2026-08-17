@@ -5,7 +5,7 @@
 #include<unordered_set>
 using namespace std;
 
-//ooptimal approach
+//optimal approach
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
