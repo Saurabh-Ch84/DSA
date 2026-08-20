@@ -1,30 +1,27 @@
-#include<iostream>
-#include<vector>
-
+#include<bits/stdc++.h>
 using namespace std;
-using vi = vector<int> ;
-using vstr = vector<string> ;
 
 class Solution {
     bool isLeapYear(int year){
-        if(year%400==0) return true;
-        return (year%4==0 && year%100!=0);
+        return (year%400==0 || (year%4==0 && year%100!=0));
     }
 public:
     string dayOfTheWeek(int day, int month, int year) {
-        vi monthDays = {31,28,31,30,31,30,31,31,30,31,30,31};
-        vstr dayofweek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-        int sum = 4;
-        for (int i = 1971; i < year; i++) {
-            sum+=365;
-            if(isLeapYear(i)) sum+=1;
+        vector<int> monthDays={0,31,28,31,30,31,30,31,31,30,31,30,31};
+        vector<string> days={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+        int oddDays=(30)%7+isLeapYear(1971);
+        for(int m=2;m<=12;m++)
+            oddDays=(oddDays+monthDays[m])%7;
+        for(int y=1972;y<year;y++)
+            oddDays=(oddDays+(isLeapYear(y)? 2:1))%7;
+        for(int m=1;m<month;m++){
+            oddDays=(oddDays+monthDays[m]);
+            if(m==2 && isLeapYear(year))
+                oddDays=(oddDays+1)%7;
         }
-        for (int i = 1; i < month; i++) {
-            sum += monthDays[i-1];
-            if(isLeapYear(year) && i==2) sum+=1;
-        }
-        sum += day;
-        return dayofweek[sum % 7];
+        oddDays=(oddDays+day)%7;
+        int ptr=5;
+        return days[(ptr+oddDays)%7];
     }
 };
 
