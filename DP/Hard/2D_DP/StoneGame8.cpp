@@ -56,7 +56,7 @@ public:
     }
 };
 
-class Solution {
+class Solution3 {
     using vint=vector<int>;
     using vvint=vector<vint>;
     int inf=-1e7;
@@ -77,6 +77,48 @@ public:
             suffixMax=max(suffixMax,prefixArr[i]-dp[i]);
         }
         return dp[0];
+    }
+};
+
+class Solution4 {
+    using vint=vector<int>;
+    int inf=-1e7;
+    int recursion(int i,int n,vint &prefixArr,vint &dp){
+        if(i==n-1) return prefixArr[n-1];
+        if(dp[i]!=inf) return dp[i];
+        int skip=recursion(i+1,n,prefixArr,dp);
+        int take=prefixArr[i]-recursion(i+1,n,prefixArr,dp);
+        return dp[i]=max(skip,take);
+    }
+public:
+    int stoneGameVIII(vector<int>& stones) {
+        int n=stones.size();
+        vint prefixArr(n,0);
+        prefixArr[0]=stones[0];
+        for(int i=1;i<n;i++)
+            prefixArr[i]=prefixArr[i-1]+stones[i];
+        vint dp(n+1,inf);
+        return recursion(1,n,prefixArr,dp);
+    }
+};
+
+class Solution5 {
+    using vint=vector<int>;
+public:
+    int stoneGameVIII(vector<int>& stones) {
+        int n=stones.size();
+        vint prefixArr(n,0);
+        prefixArr[0]=stones[0];
+        for(int i=1;i<n;i++)
+            prefixArr[i]=prefixArr[i-1]+stones[i];
+        vint dp(n+1,0);
+        dp[n-1]=prefixArr[n-1];
+        for(int i=n-2;i>=0;i--){
+            int skip=dp[i+1];
+            int take=prefixArr[i]-dp[i+1];
+            dp[i]=max(skip,take);
+        }
+        return dp[1];
     }
 };
 
