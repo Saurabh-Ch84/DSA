@@ -19,8 +19,7 @@ class Solution2 {
     }
 public:
     bool uniformArray(vector<int>& nums1) {
-        const int inf=1e9+7;
-        int n=nums1.size(), minEven=inf, minOdd=inf;
+        int inf=1e9+7, n=nums1.size(), minEven=inf, minOdd=inf;
         for(int i=0; i<n; i++){
             if(nums1[i]%2==0) minEven=min(minEven, nums1[i]);
             else minOdd=min(minOdd, nums1[i]);
