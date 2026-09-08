@@ -2,7 +2,7 @@
 using namespace std;
 
 class Solution {
-    long long max_gas = 0;
+    long long max_gas;
 
     // DFS returns the maximum gas starting from 'u' and going DOWN into its subtree
     long long DFS(int u, int p, vector<long long> &w, vector<vector<pair<int, long long>>> &adj) {

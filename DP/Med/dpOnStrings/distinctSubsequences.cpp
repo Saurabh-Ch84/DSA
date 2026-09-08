@@ -4,7 +4,29 @@ using namespace std;
 
 using vi = vector<int> ;
 using vvi = vector<vi> ;
-class Solution {
+
+class Solution1 {
+    int mod=1e9+7;
+public:
+    int numDistinct(string s, string t) {
+        int n=s.size(), m=t.size();
+        vector<int> dp(m+1,0);
+        dp[0]=1;
+        for(int i=1;i<=n;i++){
+            vector<int> temp(m+1,0);
+            temp[0]=1;
+            for(int j=1;j<=m;j++){
+                long long skip=dp[j], take=0;
+                if(s[i-1]==t[j-1]) take=dp[j-1];
+                temp[j]=(skip+take)%mod;
+            }
+            dp=temp;
+        }
+        return dp[m];
+    }
+};
+
+class Solution2 {
     int recursion(int i,int j,int n,int m,string &s,string &t,vvi &dp){
         if(j>=m) return 1;
         if(i>=n) return 0;
@@ -22,7 +44,7 @@ public:
     }
 };
 
-class Solution {
+class Solutio3 {
     int recursion(string &s, string &t,int idxS,int idxT,vector<vector<int>> &dp){
         if(idxT<0) return 1;
         if(idxS<0) return 0;
