@@ -19,6 +19,14 @@ class KMP{
                 else i++;
             }
         }
+        for(int i=0;i<m;i++){
+            cout<<pattern[i]<<" ";
+        }
+        cout<<endl;
+        for(int i=0;i<m;i++){
+            cout<<lps[i]<<" ";
+        }
+        cout<<endl;
         return lps;
     }
 
@@ -43,7 +51,7 @@ class KMP{
 
 int main(){
     KMP kmp;
-    string text = "aaaaaa", pattern = "aa";
+    string text = "nfbfbsddjdbsebfefdv", pattern = "abcababcab";
     vector<int> matches = kmp.findPattern(pattern, text);
     for(int idx : matches)
         cout << "Pattern found at index: " << idx << endl;

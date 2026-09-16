@@ -93,7 +93,6 @@ class Solution {
                 int w=edges[j][2];
                 if(ds.unionBySize(u,v)) weight+=w;
             }
-            
             if(ds.numOfComps()==1 && weight>mstWeight)
                 mstSecWeight=min(mstSecWeight,weight);
         }
