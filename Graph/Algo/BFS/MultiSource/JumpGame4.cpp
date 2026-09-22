@@ -41,16 +41,13 @@ public:
     int minJumps(vector<int>& arr) {
         int n=arr.size();
         unordered_map<int,vint> hashMap;
-        for(int i=0;i<n;i++){
-            if(i && i!=n-1 && arr[i-1]==arr[i] && arr[i+1]==arr[i])
-                continue;
+        for(int i=0;i<n;i++)
             hashMap[arr[i]].push_back(i);
-        }
         return BFS(0,n,arr,hashMap);
     }
 };
 
 int main(){
-
+    
 return 0;
 }
