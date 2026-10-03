@@ -60,7 +60,6 @@ class Solution {
             buildTree(0,0,n-1,arr);
         }
         
-        
         void updateQuery(int i,int val){
             update(0,0,n-1,i,val);
         }
