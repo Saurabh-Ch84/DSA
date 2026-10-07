@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     bool checkValidString(string s) {
         int maxOpen=0,minOpen=0,n=s.length();
@@ -26,7 +26,7 @@ public:
     }
 };
 
-class Solution {
+class Solution2 {
 public:
     bool checkValidString(string s)
     {
@@ -60,8 +60,35 @@ public:
     }
 };
 
+class Solution3 {
+public:
+    bool checkValidString(string s) {
+        int n=s.size();
+        int leftBalance=0;
+        for(int i=0;i<n;i++){
+            if(s[i]==')'){
+                leftBalance--;
+                if(leftBalance<0) 
+                    return 0;
+            }
+            else leftBalance++;
+        }
+        if(leftBalance==0) return 1;
+        int rightBalance=0;
+        for(int i=n-1;i>=0;i--){
+            if(s[i]=='('){
+                rightBalance--;
+                if(rightBalance<0) 
+                    return 0;
+            }
+            else rightBalance++;
+        }
+        return 1;
+    }
+};
+
 int main(){
-    Solution *s=new Solution();
+    Solution3 *s=new Solution3();
     cout<<s->checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())")<<endl;
 return 0;
 }
