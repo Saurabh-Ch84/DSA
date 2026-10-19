@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 //Definition for a binary tree node.
@@ -13,15 +14,28 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
+    TreeNode* invertTreeDFS(TreeNode* root) {
         if(!root) return nullptr;
-        TreeNode* left=invertTree(root->left);
-        TreeNode* right=invertTree(root->right);
+        TreeNode* left=invertTreeDFS(root->left);
+        TreeNode* right=invertTreeDFS(root->right);
         root->right=left;
         root->left=right;
         return root;
     }
+    TreeNode* invertTreeBFS(TreeNode* root) {
+        queue<TreeNode*> q;
+        if(root) q.push(root);
+
+        while(!q.empty()){
+            TreeNode* node=q.front(); q.pop();
+            swap(node->left,node->right);
+            if(node->left) q.push(node->left);
+            if(node->right) q.push(node->right);
+        }
+        return root;
+    }
 };
+
 
 int main(){
 

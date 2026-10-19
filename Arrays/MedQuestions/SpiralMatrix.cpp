@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<climits>
+#include<queue>
 using namespace std;
 
 using vi = vector<int> ;
@@ -155,6 +156,40 @@ public:
             bottomTop(matrix,result,top,bottom,left);
         }
         return result;
+    }
+};
+
+class Solution {
+    bool isValid(int i,int j,int m,int n){
+        return (i>=0 && j>=0 && i<m && j<n);
+    }
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int m=matrix.size(), n=matrix[0].size(), visited=-1e8; 
+        vector<vector<int>> dir={{0,1},{1,0},{0,-1},{-1,0}};
+        queue<tuple<int,int,int>> q;
+        q.push({0,0,0});
+
+        vector<int> res;
+        while(!q.empty()){
+            auto entry=q.front(); q.pop();
+            int i=get<0>(entry), j=get<1>(entry), k=get<2>(entry);
+            res.push_back(matrix[i][j]);
+            matrix[i][j]=visited;
+            int numberOfTurnsTaken=0;
+            while(numberOfTurnsTaken<2){
+                int ii=i+dir[k][0], jj=j+dir[k][1];
+                if(isValid(ii,jj,m,n) && matrix[ii][jj]!=visited){
+                    q.push({ii,jj,k});
+                    break;
+                }
+                else{
+                    k=(k+1)%4;
+                    numberOfTurnsTaken++;
+                }
+            }
+        }
+        return res;
     }
 };
 

@@ -55,6 +55,28 @@ class Solution {
         return (useMemo)?memoizationApproach(s): expansionApproach(s);
     }
 };
+
+class Solution2 {
+public:
+    string longestPalindrome(string s) {
+        int n=s.size(), maxi=0, start=-1;
+        vector<vector<bool>> dp(n,vector<bool>(n,0));
+        for(int len=1;len<=n;len++){
+            for(int i=0;i<n-len+1;i++){
+                int j=i+len-1;
+                if(len==1) dp[i][j]=1;
+                else if(len==2 && s[i]==s[j]) dp[i][j]=1;
+                else if(s[i]==s[j]) dp[i][j]=dp[i+1][j-1];
+                if(dp[i][j] && len>maxi){
+                    maxi=len;
+                    start=i;
+                }
+            }
+        }
+        return s.substr(start,maxi);
+    }
+};
+
 int main(){
     Solution s;
 
