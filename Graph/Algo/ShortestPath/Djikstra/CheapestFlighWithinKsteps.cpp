@@ -5,7 +5,7 @@
 #include<unordered_map>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
         vector<int> dist(n,INT_MAX);
@@ -25,7 +25,7 @@ public:
 };
 
  //
-class Solution {
+class Solution2 {
 public:
    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
        unordered_map<int, vector<pair<int, int>>> adj;
@@ -56,6 +56,45 @@ public:
             }
         }
         return (distance[dst] == 1e8) ? -1 : distance[dst];
+    }
+};
+
+class Solution3 {
+    using tuple3_t=tuple<int,int,int>;
+    using minheap_t=priority_queue<tuple3_t,vector<tuple3_t>,greater<tuple3_t>>;
+    int Djisktra(int src,int dst,vector<vector<pair<int,int>>> &adj,int n,int k){
+        int inf=1e9;
+        vector<vector<int>> dist(n,vector<int>(k+1,inf));
+        dist[src][0]=0;
+        minheap_t minHeap;
+        minHeap.push({0,0,src});
+
+        while(!minHeap.empty()){
+            auto entry=minHeap.top(); minHeap.pop();
+            int uPrice=get<0>(entry), uFlight=get<1>(entry), u=get<2>(entry);
+            for(auto &p: adj[u]){
+                int v=p.first, vPrice=p.second+uPrice, vFlight=1+uFlight;
+                if(vFlight<=k && dist[v][vFlight]>vPrice){
+                    dist[v][vFlight]=vPrice;
+                    minHeap.push({dist[v][vFlight],vFlight,v});
+                }
+            }
+        }
+
+        int mini=inf;
+        for(int i=0;i<=k;i++)
+            mini=min(mini,dist[dst][i]);
+        
+        return (mini==inf? -1:mini);
+    }
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights,int src,int dst,int k) {
+        vector<vector<pair<int,int>>> adj(n);
+        for(auto &flight: flights){
+            int u=flight[0], v=flight[1], p=flight[2];
+            adj[u].push_back({v,p});
+        }
+        return Djisktra(src,dst,adj,n,k+1); // k-> intermediate steps excluding final destination.
     }
 };
 
